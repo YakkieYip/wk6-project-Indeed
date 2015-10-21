@@ -168,6 +168,28 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   padding: 0 30px;
 }
 
+.container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.equalHMWrap {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.equalHM {
+  width: 32%;
+}
+
+.eq {
+  padding: 10px;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -291,19 +313,6 @@ p.description {
   font-size: 1.4rem;
   color: #3B4543;
   line-height: 19px;
-}
-
-a.back-to-top {
-  display: none;
-  width: 60px;
-  height: 60px;
-  text-indent: -9999px;
-  position: fixed;
-  z-index: 999;
-  right: 20px;
-  bottom: 20px;
-  background: #3B4543 url("<i class=" fa fa-chevron-up "></i>") no-repeat center 43%;
-  border-radius: 30px;
 }
 
 /* Then we use media queries for targeting other resolutions */
