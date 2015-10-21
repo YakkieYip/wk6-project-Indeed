@@ -1,0 +1,237 @@
+@import "_setup.scss";
+
+
+//MIXINS
+$ltgrey: #F4F4F4;
+$lime: #EFFF9B;
+$pink: #F99D88;
+$slate: #A7B8B8;
+$drkgrey: #3B4543;
+
+@mixin fontSize($fontSize) {
+	font-size: $fontSize * 1px; 
+	font-size: ($fontSize / 10) * 1rem;
+}
+
+
+
+
+//General
+
+//Structure
+
+.wrapper {
+	max-width: 1024px;
+	margin: 0 auto;
+	padding: 0 30px;
+}
+
+//Typography
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.4rem;
+	line-height: 1.7;
+}
+
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Lato', sans-serif;
+}
+
+p {
+	font-family: 'Droid Serif', serif;
+}
+
+h1 {
+	@include fontSize(82);
+	font-weight: 700;
+	color: #FFFFFF;
+	line-height: 85px;
+
+}
+
+h2 {
+	@include fontSize(52);
+	color: $drkgrey;
+	line-height: 55px;
+
+}
+
+h3 {
+	@include fontSize(18);
+	color: $drkgrey;
+	font-weight: 700;
+	letter-spacing: 2.81px;
+	line-height: 22px;
+
+}
+
+h4 {
+
+}
+
+
+//Header Section
+
+header {
+  /* Location of the image */
+  background-image: url(../images/hero-banner.jpg);
+  
+  /* Image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Image doesn't repeat */
+  background-repeat: no-repeat;
+  
+  /* Makes the image fixed in the viewport so that it doesn't move when 
+     the content height is greater than the image height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based on its container's size */
+  background-size: cover;
+  
+  /* Pick a solid background color that will be displayed while the background image is loading */
+  background-color:#464646;
+  
+  /* SHORTHAND CSS NOTATION
+   * background: url(background-photo.jpg) center center cover no-repeat fixed;
+   */
+}
+
+//Top Bar
+
+.topNav {
+	display: flex;
+	flex: 1 1
+
+}
+
+.hamburger {
+
+}
+
+.social {
+
+}
+
+//Hero Image
+
+.hero {
+
+}
+
+img.logo {
+	max-width: 100%;
+}
+
+//Form
+
+input.keywords, .location {
+	background: rgba(255, 255, 255, 0.25); 
+	border-radius: 4px;
+	border-style: none;
+	color: white;
+	font-family: Montserrat-Regular;
+	@include fontSize(14);
+	letter-spacing: 0px;
+	line-height: 18px;
+	padding: 15px;
+}
+
+
+button {
+	background: $pink;
+	border-radius: 40px;
+	border-style: none;
+	color: white;
+	text-transform: uppercase;
+	@include fontSize(10);
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	color: #FFFFFF;
+	letter-spacing: 2px;
+	line-height: 13px;
+
+}
+
+
+//Main Section
+
+main {
+	background: $ltgrey;
+}
+
+.intro {
+
+}
+
+.counter {
+
+}
+
+article {
+	border: solid 1px $drkgrey;
+	background: white;
+	width: 33%;
+
+}
+
+header.lime {
+	background: $lime;
+}
+
+p.description {
+font-family: DroidSerif;
+@include fontSize(14);
+color: $drkgrey;
+line-height: 19px;
+}
+
+
+//Back to top icon
+
+a.back-to-top {
+	display: none;
+	width: 60px;
+	height: 60px;
+	text-indent: -9999px;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+	bottom: 20px;
+	background: $drkgrey url("<i class="fa fa-chevron-up"></i>") no-repeat center 43%;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+
+
+
+
+/* Then we use media queries for targeting other resolutions */
+
+/* Portrait tablet and small desktops */
+@media (max-width: 940px) {
+
+}
+ 
+/* Landscape phone to portrait tablet */
+@media only screen and (max-width: 767px) {
+  header {
+    /* The file size of this background image is 93% smaller
+     * to improve page load speed on mobile internet connections */
+    background-image: url(../images/background-photo-mobile-devices.jpg);
+  }
+	}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}
+
+
+
