@@ -5,32 +5,39 @@ var myApp = {};
 myApp.jyipKey = '886387905641973'; // insert personal API key
 
 // Add event listener onto page, once clicked grab input field values by user
-myApp.input1Listener = function(){
-	$('.keywords').on('change', function(){
-		var input1 = $(this).val();
-		if(input1 && input1.length >=2){
-			myApp.input2Listener();
-			return input1
-		};	
-	});
-};
+// myApp.input1Listener = function(){
+// 	$('.keywords').on('change', function(){
+// 		var input1 = $(this).val();
+// 		if(input1 && input1.length >=2){
+// 			myApp.input2Listener();
+// 			return input1;
+// 		};	
+// 	});
+// };
 
-myApp.input2Listener = function(){
-	$('.keywords').on('change', function(){
-		var input2 = $(this).val();
-		if(input2 && input2.length >=2){
-			myApp.searchListener();
-		};	
-	});
-};
+// myApp.input2Listener = function(){
+// 	$('.keywords').on('change', function(){
+// 		var input2 = $(this).val();
+// 		if(input2 && input2.length >=2){
+// 			myApp.searchListener();
+// 			return input2;
+// 		};	
+// 	});
+// };
 
 myApp.searchListener = function(){
-  $(".search").on("click", myApp.getUserInput);
+  $("form.mainForm").on("submit", function(e) {
+  		e.preventDefault();
+  		// if(input1 && input1.length >=2){
+  		myApp.keywords = $('.keywords').val();
+  		myApp.location = $('.location').val();
+  		myApp.getUserInput();
+
+  });
 };
 
 // Create a method to .ajax call Indeed jobs
-myApp.getUserInput = function(e){
-	e.preventDefault();
+myApp.getUserInput = function(){
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
 	    dataType: 'json',
@@ -41,8 +48,10 @@ myApp.getUserInput = function(e){
 	            publisher: myApp.jyipKey, // Publisher ID : Personal API key
 	            v: 2, // API Version : All publishers should be using v.2 | Required 
 	            format: 'json', // Output format of API : 'json'	| default is XML
-	            q: 'javascript', // Query : 'javascript'	| default is 'as_and'
-	            l: 'toronto', // Location : postal code or 'city, state/province/region' combo.
+	            q: myApp.keywords, 
+	            // 'javascript', // Query : 'javascript'	| default is 'as_and'
+	            l: myApp.location,
+	            // 'toronto', // Location : postal code or 'city, state/province/region' combo.
 	            sort: 'date', // Sort by : relevance  | Can sort by 'date'. Default is 'relevance'.
 	            radius: 25, // Distance from search Location : Default is 25 MILES of 'Location'.
 

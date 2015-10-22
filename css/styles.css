@@ -182,6 +182,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
           justify-content: space-between;
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
+<<<<<<< HEAD
           flex-wrap: wrap;
 }
 
@@ -193,6 +194,15 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 .eq {
   padding: 0px;
 }
+=======
+          flex-wrap: wrap; }
+
+.equalHM {
+  width: calc(33% - 20px); }
+
+.eq {
+  padding: 0px; }
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
 
 html {
   font-size: 62.5%;
@@ -205,8 +215,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
+<<<<<<< HEAD
   text-align: center;
 }
+=======
+  text-align: center; }
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
 
 p {
   font-family: 'Droid Serif', serif;
@@ -227,8 +241,12 @@ h2 {
   line-height: 55px;
   text-align: center;
   margin: 0 0 0 0;
+<<<<<<< HEAD
   padding: 50px 0 30px 0;
 }
+=======
+  padding: 50px 0 30px 0; }
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
 
 h3 {
   font-size: 18px;
@@ -240,8 +258,7 @@ h3 {
   text-transform: uppercase;
   text-align: center;
   margin: 0;
-  padding: 10px 0;
-}
+  padding: 10px 0; }
 
 h4 {
   font-size: 10px;
@@ -251,8 +268,7 @@ h4 {
   line-height: 15px;
   margin: 0;
   padding: 20px 0 0 0;
-  text-align: center;
-}
+  text-align: center; }
 
 h5, h6 {
   font-size: 14px;
@@ -263,12 +279,15 @@ h5, h6 {
   margin: 0;
   padding: 0;
   text-align: center;
-  padding: 0;
-}
+  padding: 0; }
 
 h6 {
+<<<<<<< HEAD
   padding: 0 0 20px 0;
 }
+=======
+  padding: 0 0 20px 0; }
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
 
 header {
   /* Location of the image */
@@ -294,17 +313,19 @@ header {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+<<<<<<< HEAD
   -webkit-box-flex: 1;
+=======
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
   -webkit-flex: 1 1 auto;
       -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
-}
+          flex: 1 1 auto; }
 
 .hamburger .fa {
-  color: white;
-}
+  color: white; }
 
 .social {
+<<<<<<< HEAD
   color: white;
 }
 
@@ -316,61 +337,56 @@ header {
   display: inline-block;
   padding: 10px;
 }
+=======
+  color: white; }
+  .social ul {
+    list-style-type: none; }
+  .social li {
+    display: inline-block;
+    padding: 10px; }
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
 
 img.logo {
   max-width: 100%;
 }
 
 .mainForm {
-  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
-          justify-content: center;
-}
+          justify-content: center; }
 
 .field1 {
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0;
-  padding: 0;
-}
-
-.field1 p {
-  font-size: 10px;
-  font-size: 1rem;
-  color: white;
-  font-weight: 400;
-}
+  padding: 0; }
+  .field1 p {
+    font-size: 10px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 400; }
 
 .field2 {
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0;
-  padding: 0;
-}
-
-.field2 p {
-  font-size: 10px;
-  font-size: 1rem;
-  color: white;
-  font-weight: 400;
-}
+  padding: 0; }
+  .field2 p {
+    font-size: 10px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 400; }
 
 input.keywords, .location {
   background: rgba(255, 255, 255, 0.25);
@@ -383,15 +399,18 @@ input.keywords, .location {
   letter-spacing: 0px;
   line-height: 18px;
   padding: 15px;
-  margin: 0 20px 0 0;
-}
+  margin: 0 20px 0 0; }
 
 .subText {
   font-size: 10px;
   font-size: 1rem;
   color: white;
+<<<<<<< HEAD
   font-weight: 400;
 }
+=======
+  font-weight: 400; }
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
 
 button {
   background: #F99D88;
@@ -414,8 +433,7 @@ main {
 
 .intro {
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
 .counter {
   font-size: 14px;
@@ -424,40 +442,41 @@ main {
   text-align: center;
   padding: 0 0 20px 0;
   margin: 0;
-  color: #444444;
-}
+  color: #444444; }
 
 article {
   border-radius: 4px;
   background: white;
+<<<<<<< HEAD
   width: -webkit-calc(33% - 20px);
+=======
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
   width: calc(33% - 20px);
-  margin: 10px;
-}
-
-article .miles {
-  font-size: 10px;
-  font-size: 1rem;
-  font-family: 'Lato', sans-serif;
-  text-align: center;
-  padding: 0 0 20px 0;
-  margin: 0;
-}
+  margin: 10px; }
+  article .miles {
+    font-size: 10px;
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    padding: 0 0 20px 0;
+    margin: 0; }
 
 header.lime {
   background: #EFFF9B;
-  border-radius: 4px 4px 0 0;
-}
+  border-radius: 4px 4px 0 0; }
 
 header.pink {
   background: #F99D88;
-  border-radius: 4px 4px 0 0;
-}
+  border-radius: 4px 4px 0 0; }
 
 header.slate {
   background: #A7B8B8;
+<<<<<<< HEAD
   border-radius: 4px 4px 0 0;
 }
+=======
+  border-radius: 4px 4px 0 0; }
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
 
 p.description {
   font-family: DroidSerif;
@@ -466,24 +485,25 @@ p.description {
   color: #444444;
   line-height: 19px;
   padding: 20px;
-  margin: 0;
-}
+  margin: 0; }
 
 article.moreInfo {
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
 article a {
   color: #A7B8B8;
   text-decoration: none;
   font-family: 'Lato', sans-serif;
-  font-weight: 700;
-}
+  font-weight: 700; }
 
 article a:hover {
+<<<<<<< HEAD
   color: #F99D88;
 }
+=======
+  color: #F99D88; }
+>>>>>>> bb447c69faca4418615135e3f6844f4e1c4f0d95
 
 /* Then we use media queries for targeting other resolutions */
 /* Portrait tablet and small desktops */
