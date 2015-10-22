@@ -180,14 +180,18 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 
 .equalHM {
-  width: 32%;
+  width: -webkit-calc(33% - 20px);
+  width: calc(33% - 20px);
 }
 
 .eq {
-  padding: 10px;
+  padding: 0px;
 }
 
 html {
@@ -199,8 +203,9 @@ body {
   line-height: 1.7;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
+  text-align: center;
 }
 
 p {
@@ -218,17 +223,51 @@ h1 {
 h2 {
   font-size: 52px;
   font-size: 5.2rem;
-  color: #3B4543;
+  color: #444444;
   line-height: 55px;
+  text-align: center;
+  margin: 0 0 0 0;
+  padding: 50px 0 30px 0;
 }
 
 h3 {
   font-size: 18px;
   font-size: 1.8rem;
-  color: #3B4543;
+  color: #444444;
   font-weight: 700;
-  letter-spacing: 2.81px;
+  letter-spacing: 2.5px;
   line-height: 22px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+}
+
+h4 {
+  font-size: 10px;
+  font-size: 1rem;
+  color: #444444;
+  font-weight: 400;
+  line-height: 15px;
+  margin: 0;
+  padding: 20px 0 0 0;
+  text-align: center;
+}
+
+h5, h6 {
+  font-size: 14px;
+  font-size: 1.4rem;
+  color: #F99D88;
+  letter-spacing: 1px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  padding: 0;
+}
+
+h6 {
+  padding: 0 0 20px 0;
 }
 
 header {
@@ -256,13 +295,81 @@ header {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1;
-      -ms-flex: 1 1;
-          flex: 1 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.hamburger .fa {
+  color: white;
+}
+
+.social {
+  color: white;
+}
+
+.social ul {
+  list-style-type: none;
+}
+
+.social li {
+  display: inline-block;
+  padding: 10px;
 }
 
 img.logo {
   max-width: 100%;
+}
+
+.mainForm {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.field1 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.field1 p {
+  font-size: 10px;
+  font-size: 1rem;
+  color: white;
+  font-weight: 400;
+}
+
+.field2 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.field2 p {
+  font-size: 10px;
+  font-size: 1rem;
+  color: white;
+  font-weight: 400;
 }
 
 input.keywords, .location {
@@ -276,6 +383,14 @@ input.keywords, .location {
   letter-spacing: 0px;
   line-height: 18px;
   padding: 15px;
+  margin: 0 20px 0 0;
+}
+
+.subText {
+  font-size: 10px;
+  font-size: 1rem;
+  color: white;
+  font-weight: 400;
 }
 
 button {
@@ -297,22 +412,77 @@ main {
   background: #F4F4F4;
 }
 
+.intro {
+  padding: 0;
+  margin: 0;
+}
+
+.counter {
+  font-size: 14px;
+  font-size: 1.4rem;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  padding: 0 0 20px 0;
+  margin: 0;
+  color: #444444;
+}
+
 article {
-  border: solid 1px #3B4543;
+  border-radius: 4px;
   background: white;
-  width: 33%;
+  width: -webkit-calc(33% - 20px);
+  width: calc(33% - 20px);
+  margin: 10px;
+}
+
+article .miles {
+  font-size: 10px;
+  font-size: 1rem;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  padding: 0 0 20px 0;
+  margin: 0;
 }
 
 header.lime {
   background: #EFFF9B;
+  border-radius: 4px 4px 0 0;
+}
+
+header.pink {
+  background: #F99D88;
+  border-radius: 4px 4px 0 0;
+}
+
+header.slate {
+  background: #A7B8B8;
+  border-radius: 4px 4px 0 0;
 }
 
 p.description {
   font-family: DroidSerif;
   font-size: 14px;
   font-size: 1.4rem;
-  color: #3B4543;
+  color: #444444;
   line-height: 19px;
+  padding: 20px;
+  margin: 0;
+}
+
+article.moreInfo {
+  padding: 0;
+  margin: 0;
+}
+
+article a {
+  color: #A7B8B8;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+article a:hover {
+  color: #F99D88;
 }
 
 /* Then we use media queries for targeting other resolutions */
