@@ -1,0 +1,28 @@
+{
+  "name": "the3amigos",
+  "version": "0.0.1",
+  "description": "week6-project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike01101011/wk6-project-Indeed.git"
+  },
+  "author": "the3amigos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mike01101011/wk6-project-Indeed/issues"
+  },
+  "homepage": "https://github.com/mike01101011/wk6-project-Indeed#readme",
+  "devDependencies": {
+    "browser-sync": "^2.9.11",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-sass": "^2.0.4",
+    "jshint-stylish": "^2.0.1"
+  }
+}
