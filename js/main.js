@@ -2,10 +2,35 @@
 var myApp = {};
 
 // Insert API key name of '.apiKey' into myApp {} and store API key
-myApp.jyipKey = '886387905641973'; // personal API key
+myApp.jyipKey = '886387905641973'; // insert personal API key
+
+// Add event listener onto page, once clicked grab input field values by user
+myApp.input1Listener = function(){
+	$('.keywords').on('change', function(){
+		var input1 = $(this).val();
+		if(input1 && input1.length >=2){
+			myApp.input2Listener();
+			return input1
+		};	
+	});
+};
+
+myApp.input2Listener = function(){
+	$('.keywords').on('change', function(){
+		var input2 = $(this).val();
+		if(input2 && input2.length >=2){
+			myApp.searchListener();
+		};	
+	});
+};
+
+myApp.searchListener = function(){
+  $(".search").on("click", myApp.getUserInput);
+};
 
 // Create a method to .ajax call Indeed jobs
-myApp.init = function(){
+myApp.getUserInput = function(e){
+	e.preventDefault();
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
 	    dataType: 'json',
@@ -57,6 +82,12 @@ myApp.init = function(){
 		console.log(myApp.firstTenJobs);
 	});
 }; // end myApp.init
+
+
+myApp.init = function(){
+	myApp.input1Listener
+	myApp.searchListener();
+};
 
 // On document ready, call initialize method.
 $(function() {
