@@ -6,7 +6,7 @@ $ltgrey: #F4F4F4;
 $lime: #EFFF9B;
 $pink: #F99D88;
 $slate: #A7B8B8;
-$drkgrey: #3B4543;
+$drkgrey: #444444;
 
 @mixin fontSize($fontSize) {
 	font-size: $fontSize * 1px; 
@@ -33,14 +33,19 @@ $drkgrey: #3B4543;
 
 .equalHMWrap {
 	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.topWrap {
+	
 }
 
 .equalHM {
-	width: 32%;
+	width: calc(33% - 20px);
 }
 
 .eq {
-	padding: 10px;
+	padding: 0px;
 }
 
 
@@ -57,8 +62,9 @@ body {
 }
 
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
 	font-family: 'Lato', sans-serif;
+	text-align: center;
 }
 
 p {
@@ -77,6 +83,9 @@ h2 {
 	@include fontSize(52);
 	color: $drkgrey;
 	line-height: 55px;
+	text-align: center;
+	margin: 0 0 0 0;
+	padding: 50px 0 30px 0;
 
 }
 
@@ -84,14 +93,40 @@ h3 {
 	@include fontSize(18);
 	color: $drkgrey;
 	font-weight: 700;
-	letter-spacing: 2.81px;
+	letter-spacing: 2.5px;
 	line-height: 22px;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 0;
+	padding: 10px 0 ;
 
 }
 
 h4 {
-
+	@include fontSize(10);
+	color: $drkgrey;
+	font-weight: 400;
+	line-height: 15px;
+	margin: 0;
+	padding: 20px 0 0 0;
+	text-align: center;
 }
+
+h5, h6 {
+	@include fontSize(14);
+	color: $pink;
+	letter-spacing: 1px;
+	line-height: 17px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	padding: 0;
+}
+
+h6 {
+	padding: 0 0 20px 0;
+}
+
 
 
 //Header Section
@@ -125,15 +160,29 @@ header {
 
 .topNav {
 	display: flex;
+<<<<<<< HEAD
+	flex: 1 1 auto;
+=======
 	flex: 1 1;
+>>>>>>> 33486c0877df818eef57812ac64c707196ef2f29
 
 }
 
-.hamburger {
+.hamburger .fa {
+	color: white;
 
 }
 
 .social {
+
+	color: white;
+	ul {
+		list-style-type: none;
+	}
+	li {
+		display: inline-block;
+		padding: 10px
+	}
 
 }
 
@@ -148,6 +197,34 @@ img.logo {
 }
 
 //Form
+.mainForm {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.field1 {
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+		p {
+		@include fontSize(10);
+		color: white;
+		font-weight: 400;
+	}
+}
+
+.field2 {
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+	p {
+		@include fontSize(10);
+		color: white;
+		font-weight: 400;
+	}
+}
 
 input.keywords, .location {
 	background: rgba(255, 255, 255, 0.25); 
@@ -159,7 +236,16 @@ input.keywords, .location {
 	letter-spacing: 0px;
 	line-height: 18px;
 	padding: 15px;
+	margin: 0 20px 0 0;
 }
+
+.subText {
+	@include fontSize(10);
+	color: white;
+	font-weight: 400;
+}
+
+
 
 
 button {
@@ -185,22 +271,51 @@ main {
 }
 
 .intro {
+	padding: 0;
+	margin: 0;
 
 }
 
 .counter {
+	@include fontSize(14);
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	padding: 0 0 20px 0;
+	margin: 0;
+	color: $drkgrey;
 
 }
 
 article {
-	border: solid 1px $drkgrey;
+	border-radius: 4px;
 	background: white;
-	width: 33%;
+	width: calc(33% - 20px);
+	margin: 10px;
+
+.miles {
+	@include fontSize(10);
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	padding: 0 0 20px 0;
+	margin: 0;
+}
+
 
 }
 
 header.lime {
 	background: $lime;
+	border-radius: 4px 4px 0 0;
+}
+
+header.pink {
+	background: $pink;
+	border-radius: 4px 4px 0 0;
+}
+
+header.slate {
+	background: $slate;
+	border-radius: 4px 4px 0 0;
 }
 
 p.description {
@@ -208,7 +323,27 @@ font-family: DroidSerif;
 @include fontSize(14);
 color: $drkgrey;
 line-height: 19px;
+padding: 20px;
+margin: 0;
 }
+
+article.moreInfo {
+	padding: 0;
+	margin: 0;
+}
+
+article a{
+	color: $slate;
+	text-decoration: none;
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+}
+
+article a:hover {
+		color: $pink;
+	}
+
+
 
 
 
