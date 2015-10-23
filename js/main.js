@@ -116,25 +116,69 @@ myApp.getUserInput = function(){
 	        }
 	    } // end data
 	}).then(function(res) { // promise
-		console.log(res);
-		myApp.firstTenJobs = res.results;
-		console.log(myApp.firstTenJobs);
+		myApp.ajaxResults = res; //global variable that also shows 25 max results
+		console.log(myApp.ajaxResults);
+		myApp.count += res.results.length;
+		myApp.jobSearchResults = res.results; //array of 25 job listings
+		console.log(myApp.jobSearchResults);
+
+		var allArticleObjects = myApp.createJobArticles(myApp.jobSearchResults);
+		$(".container").empty()
+		$.each(allArticleObjects, function(index, value){
+			$(".container").append(value);			
+		});
+
 	});
 }; // end myApp.init
 
+// create array of articles jquery elements
+myApp.createJobArticles = function(resultsArray){
+	var objectArray = [];
+	$.each(resultsArray, function(index, value) {
+	  var articleObject = myApp.createJobArticle(value);
+	  objectArray.push(articleObject);
+	});
+	return objectArray;
+};
+
+// create HTML of 1 article
+myApp.createJobArticle = function(job){
+	var htmlText = "";
+	var $article = $("<article>").addClass('equalHM eq');
+	// header
+	var $header = $("<header>").addClass("lime");
+	var $jobtitle = $("<h3>").text(job.jobtitle);
+	$header.append($jobtitle);
+	// body
+	var $description = $("<p>").addClass("description").html(job.snippet);
+	// footer
+	var $footer = $("<footer>").addClass("moreInfo");
+	var $companyInfo = $("<h5>").text(job.company);
+	$footer.append($companyInfo);
+
+	// assemble article
+	$article.append($header, $description, $footer);
+	return $article;
+};
+
 
 myApp.init = function(){
-	myApp.input1Listener
 	myApp.searchListener();
 };
 
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();	
+
+	// debugging stuff, remove when ready
+	$(".keywords").val("Javascript");
+	$(".location").val("Toronto");
 });
+
 
 //Back to top function
 $('a.top').click(function () {
   $(document.body).animate({scrollTop: 0}, 800);
   return false;
 });
+
