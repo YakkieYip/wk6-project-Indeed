@@ -49,7 +49,6 @@ sponsored: false
 state: "ON"
 url: "http://ca.indeed.com/viewjob?jk */
 
-
 myApp.searchListener = function(){
   $("form.mainForm").on("submit", function(e) {
   		e.preventDefault();
@@ -124,7 +123,6 @@ myApp.getUserInput = function(){
 
 
 myApp.init = function(){
-	myApp.input1Listener
 	myApp.searchListener();
 };
 

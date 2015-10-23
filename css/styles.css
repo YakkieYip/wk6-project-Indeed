@@ -151,6 +151,17 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 .eq {
   padding: 0px; }
 
+.hidden {
+  color: white; }
+
+.hide {
+  color: white;
+  display: none; }
+
+.show {
+  color: white;
+  display: block; }
+
 html {
   font-size: 62.5%; }
 
@@ -398,10 +409,6 @@ article a:hover {
   header {
     /* The file size of this background image is 93% smaller
      * to improve page load speed on mobile internet connections */
-    background-image: url(../images/background-photo-mobile-devices.jpg); } }
-
-/* Landscape phones and down */
-ons */
     background-image: url(../images/background-photo-mobile-devices.jpg); } }
 
 /* Landscape phones and down */
