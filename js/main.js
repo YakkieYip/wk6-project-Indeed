@@ -1,6 +1,8 @@
 // Create our namespace / empty object
 var myApp = {};
 
+
+myApp.count = 0;
 // Insert API key name of '.apiKey' into myApp {} and store API key
 myApp.jyipKey = '886387905641973'; // insert personal API key
 
@@ -15,6 +17,7 @@ myApp.jyipKey = '886387905641973'; // insert personal API key
 // 	});
 // };
 
+
 // myApp.input2Listener = function(){
 // 	$('.keywords').on('change', function(){
 // 		var input2 = $(this).val();
@@ -25,14 +28,41 @@ myApp.jyipKey = '886387905641973'; // insert personal API key
 // 	});
 // };
 
+/* 0: Object
+city: "Toronto"
+company: "CaseWare"
+country: "CA"
+date: "Thu, 22 Oct 2015 23:00:42 GMT"
+expired: false
+formattedLocation: "Toronto, ON"
+formattedLocationFull: "Toronto, ON"
+formattedRelativeTime: "2 hours ago"
+indeedApply: false
+jobkey: "4fe1e73045932fd8"
+jobtitle: "Application Developer"
+latitude: 43.697803
+longitude: -79.41209
+onmousedown: "indeed_clk(this, '18');"
+snippet: "Knowledge of Java, <b>Javascript</b>, CSS, HTML, Angular JS desirable. Become an integral part of a small team of developers building a feature-rich, high-performance,..."
+source: "CaseWare"
+sponsored: false
+state: "ON"
+url: "http://ca.indeed.com/viewjob?jk */
+
+
 myApp.searchListener = function(){
   $("form.mainForm").on("submit", function(e) {
   		e.preventDefault();
-  		// if(input1 && input1.length >=2){
   		myApp.keywords = $('.keywords').val();
   		myApp.location = $('.location').val();
-  		myApp.getUserInput();
-
+  		if( myApp.keywords.length >= 2 && myApp.location.length >= 2){
+	  		$('.hidden').removeClass('show').addClass('hide');	
+	  		myApp.count = 0; //reset the counter
+	  		myApp.getUserInput();
+  		} else {
+  			console.log('poop');
+  			$('.hidden').removeClass('hide').addClass('show');
+  		};
   });
 };
 
@@ -61,10 +91,10 @@ myApp.getUserInput = function(){
 
 	            jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
 
-	            start: Results start at this number, beginning with 0. Default is 0.
 	            
 	            */
-	            limit: 9, // Max num of results returned per query : Default is 10
+	            start: myApp.count,//Results start at this number, beginning with 0. Default is 0.
+	            limit: 25, // Max num of results returned per query : Default is 10, max 25
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
 	            filter: 1, // Filter duplicate job results. 0 turns off filter. Default is 1.
