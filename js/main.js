@@ -115,13 +115,54 @@ myApp.getUserInput = function(){
 	        }
 	    } // end data
 	}).then(function(res) { // promise
-		console.log(res);
-		myApp.firstTenJobs = res.results;
-		console.log(myApp.firstTenJobs);
+		myApp.ajaxResults = res; //save our results in a global variable to access later
+		console.log(myApp.ajaxResults);
+
+		myApp.jobSearchResults = res.results; //array of 25 job listings
+		console.log(myApp.jobSearchResults);
+
+		myApp.count += res.results.length; //set a counter variable for page loading logic
+
+		var allArticleObjects = myApp.createJobArticles(myApp.jobSearchResults);
+		$('.container').empty();
+		$.each(allArticleObjects, function(index, value){
+			$('.container').append(value);
+		});
 	});
 }; // end myApp.init
 
+//create an array of article elements
+myApp.createJobArticles = function(resultsArray){
+	var objectArray = [];
+	$.each(resultsArray, function(index, value){
+		var articleObject = myApp.createJobArticle(value);
+		objectArray.push(articleObject);
+	});
+	return objectArray;	
+};
 
+//create the html of one article element
+myApp.createJobArticle = function(job){
+	var htmlText = '';
+	var $article = $('<article>').addClass('equalHM eq');
+	//header element
+	var $header = $('<header>').addClass('lime');
+	var $howRecent = $('<h4>').text(job.formattedRelativeTime);
+	var $jobtitle = $('<h3>').text(job.jobtitle);
+	$header.append($jobtitle);
+	//body
+	var $description = $('<p>').addClass('description').html(job.snippet);
+	//footer
+	var $footer = $('<footer>').addClass('moreInfo');
+	var $companyInfo = $('<h5>').text(job.company);
+	$footer.append($companyInfo);
+
+	// assemble all variables into one article element
+	$article.append($header, $description, $footer);
+	return $article;
+};
+
+//initialize Listener
 myApp.init = function(){
 // MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE
 	myApp.getLocation();
@@ -130,6 +171,8 @@ myApp.init = function(){
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();
+	$(".keywords").val("Javascript");
+	$(".location").val("Toronto");	
 });
 
 //Back to top function
