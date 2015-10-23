@@ -123,12 +123,13 @@ myApp.getUserInput = function(){
 
 
 myApp.init = function(){
-	myApp.searchListener();
+// MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE
+	myApp.getLocation();
 };
 
 // On document ready, call initialize method.
 $(function() {
-	myApp.init();	
+	myApp.init();
 });
 
 //Back to top function
@@ -136,3 +137,70 @@ $('a.top').click(function () {
   $(document.body).animate({scrollTop: 0}, 800);
   return false;
 });
+
+// MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE
+
+// http://stackoverflow.com/questions/4013606/google-maps-how-to-get-country-state-province-region-city-given-a-lat-long-va
+// http://maps.googleapis.com/maps/api/geocode/json?latlng=43.766483,-79.41209&sensor=false
+
+	myApp.userLocation;
+
+myApp.getLocation = function(){
+	if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(position){
+			myApp.userLocation = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+myApp.getCity(myApp.userLocation);
+		});	
+	} else {
+		alert("Geolocation is not supported by your browser");
+	}
+};
+myApp.getCity = function(coordinates){
+		$.ajax({
+			url: "http://geocoder.ca/?",
+			method: 'GET',
+			dataType: 'jsonp',
+			data: {
+				moreinfo: "1",
+				reverse: "Reverse+GeoCode",
+				jsonp: '1',
+				callback:'test',
+				latt: coordinates.latitude,
+				longt: coordinates.longitude
+			}
+
+// latt: "43.67023",
+// longt: "-79.38676" //Toronto
+// latt: "43.79104",
+// "-79.54052" //Vaughn
+// latt: "48.40690",
+// "-89.24594" //Thunder Bay
+// latt: "43.95084",
+// "-78.29176" //Port Hope
+// latt: "43.91924",
+// "-80.09741" //Orangeville
+// latt: "43.58821",
+// "-79.64172" //Mississauga
+// latt: "44.23142",
+// "-76.48101" //Kingston
+// latt: "43.84404",
+// "-79.01822" //Ajax
+// latt: "42.99176",
+// "-79.25059" //Welland
+// latt: "48.40690",
+// "-89.24594" //Thunder Bay
+
+	}).then(function(reverseGeocodingResult) {
+
+		myApp.userLocation.city = reverseGeocodingResult.city;
+		myApp.userLocation.province = reverseGeocodingResult.prov;
+		myApp.userLocation.postalCode = reverseGeocodingResult.postal;
+
+		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
+		// $('.location').val(myApp.userLocation.postalCode)
+
+		$('.keywords').val('Javascript');
+	
+	myApp.searchListener();
+	});
+};
