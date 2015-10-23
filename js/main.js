@@ -123,26 +123,19 @@ myApp.getUserInput = function(){
 
 
 myApp.init = function(){
-	myApp.searchListener();
+// MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE
+	myApp.getLocation();
 };
 
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();
-	
-// MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE
-	myApp.getLocation();
 });
 
 //Back to top function
 $('a.top').click(function () {
   $(document.body).animate({scrollTop: 0}, 800);
   return false;
-});
-
-// On document ready, call initialize method.
-$(function() {
-	myApp.init();
 });
 
 // MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE
@@ -156,8 +149,6 @@ myApp.getLocation = function(){
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(function(position){
 			myApp.userLocation = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-console.log("latitude: " + myApp.userLocation.latitude);
-console.log("longitude: " + myApp.userLocation.longitude);
 myApp.getCity(myApp.userLocation);
 		});	
 	} else {
@@ -171,27 +162,45 @@ myApp.getCity = function(coordinates){
 			dataType: 'jsonp',
 			data: {
 				moreinfo: "1",
-			reverse: "Reverse+GeoCode",
-			latt: coordinates.latitude,
-			longt: coordinates.longitude,
-			jsonp: '1',
-			callback:'test'}
+				reverse: "Reverse+GeoCode",
+				jsonp: '1',
+				callback:'test',
+				latt: coordinates.latitude,
+				longt: coordinates.longitude
+			}
 
-// test coordinates
-	        // latlng: "43.67023,-79.38676" //Toronto
-	        // latlng: "43.79104,-79.54052" //Vaughn
-	        // latlng: "48.40690,-89.24594" //Thunder Bay
-	        // latlng: "43.95084,-78.29176" //Port Hope
-	        // latlng: "43.91924,-80.09741" //Orangeville
-	        // latlng: "43.58821,-79.64172" //Mississauga
-	        // latlng: "44.23142,-76.48101" //Kingston
-	        // latlng: "43.84404,-79.01822" //Ajax
-	        // latlng: "42.99176,-79.25059" //Welland
-	        // latlng: "48.40690,-89.24594" //Thunder Bay
+// latt: "43.67023",
+// longt: "-79.38676" //Toronto
+// latt: "43.79104",
+// "-79.54052" //Vaughn
+// latt: "48.40690",
+// "-89.24594" //Thunder Bay
+// latt: "43.95084",
+// "-78.29176" //Port Hope
+// latt: "43.91924",
+// "-80.09741" //Orangeville
+// latt: "43.58821",
+// "-79.64172" //Mississauga
+// latt: "44.23142",
+// "-76.48101" //Kingston
+// latt: "43.84404",
+// "-79.01822" //Ajax
+// latt: "42.99176",
+// "-79.25059" //Welland
+// latt: "48.40690",
+// "-89.24594" //Thunder Bay
 
 	}).then(function(reverseGeocodingResult) {
-console.log("city "+reverseGeocodingResult.city);
-console.log("prov "+reverseGeocodingResult.prov);
-console.log("post "+reverseGeocodingResult.postal);
+
+		myApp.userLocation.city = reverseGeocodingResult.city;
+		myApp.userLocation.province = reverseGeocodingResult.prov;
+		myApp.userLocation.postalCode = reverseGeocodingResult.postal;
+
+		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
+		// $('.location').val(myApp.userLocation.postalCode)
+
+		$('.keywords').val('Javascript');
+	
+	myApp.searchListener();
 	});
 };
