@@ -144,12 +144,32 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap; }
+<<<<<<< HEAD
 
 .equalHM {
   width: calc(33% - 20px); }
 
 .eq {
   padding: 0px; }
+=======
+
+.equalHM {
+  width: calc(33% - 20px); }
+
+.eq {
+  padding: 0px; }
+
+.hidden {
+  color: white; }
+
+.hide {
+  color: white;
+  display: none; }
+
+.show {
+  color: white;
+  display: block; }
+>>>>>>> ee56991352a4ff7a23f582cabc2724931347b833
 
 html {
   font-size: 62.5%; }
