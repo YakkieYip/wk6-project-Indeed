@@ -65,6 +65,7 @@ myApp.searchListener = function(){
 
 // Create a method to .ajax call Indeed jobs
 myApp.getUserInput = function(){
+	console.log(myApp.count);
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
 	    dataType: 'json',
@@ -86,7 +87,6 @@ myApp.getUserInput = function(){
 
 	            start: myApp.count,//Results start at this number, beginning with 0. Default is 0.
 	            limit: 25, // Max num of results returned per query : Default is 10, max 25
-	            start: 25,
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
 	            filter: 1, // Filter duplicate job results. 0 turns off filter. Default is 1.
@@ -112,12 +112,15 @@ myApp.getUserInput = function(){
 		myApp.jobSearchResults = res.results; //array of 25 job listings
 		console.log(myApp.jobSearchResults);
 
-myApp.jobSearchResults.showing.start = res.results.start;
-myApp.jobSearchResults.showing.end = res.results.end;
-myApp.jobSearchResults.showing.totalResults = res.results.totalResults;
-console.log(myApp.jobSearchResults.showing.start);
-console.log(myApp.jobSearchResults.showing.end);
-console.log(myApp.jobSearchResults.showing.totalResults);
+console.log(myApp.ajaxResults.start);
+console.log(myApp.ajaxResults.end);
+console.log(myApp.ajaxResults.totalResults);
+// myApp.jobSearchResults.showing.start = res.results.start;
+// myApp.jobSearchResults.showing.end = res.results.end;
+// myApp.jobSearchResults.showing.totalResults = res.results.totalResults;
+// console.log(myApp.jobSearchResults.showing.start);
+// console.log(myApp.jobSearchResults.showing.end);
+// console.log(myApp.jobSearchResults.showing.totalResults);
 
 
 		myApp.count += res.results.length; //set a counter variable for page loading logic
