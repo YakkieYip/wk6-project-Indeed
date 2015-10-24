@@ -1,6 +1,5 @@
 @import "_setup.scss";
 
-
 //MIXINS
 $ltgrey: #F4F4F4;
 $lime: #EFFF9B;
@@ -13,13 +12,7 @@ $drkgrey: #444444;
 	font-size: ($fontSize / 10) * 1rem;
 }
 
-
-
-
-//General
-
-//Structure
-
+//General Structure
 .wrapper {
 	max-width: 1024px;
 	margin: 0 auto;
@@ -30,67 +23,52 @@ $drkgrey: #444444;
 .container {
 	display: flex;
 }
-
 .equalHMWrap {
 	justify-content: space-between;
 	flex-wrap: wrap;
 }
-
 .topWrap {
 	
 }
-
 .equalHM {
 	width: calc(33% - 20px);
 }
-
 .eq {
 	padding: 0px;
 }
-
 .hidden {
 	color: white;
 }
-
 .hide {
 	color: white;
 	display: none;
 }
-
 .show {
 	color: white;
 	display: block;
 }
 
 //Typography
-
 html {
 	font-size: 62.5%;
 }
-
 body {
 	font-size: 1.4rem;
 	line-height: 1.7;
 }
-
-
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Lato', sans-serif;
 	text-align: center;
 }
-
 p {
 	font-family: 'Droid Serif', serif;
 }
-
 h1 {
 	@include fontSize(82);
 	font-weight: 700;
 	color: #FFFFFF;
 	line-height: 85px;
-
 }
-
 h2 {
 	@include fontSize(52);
 	color: $drkgrey;
@@ -98,9 +76,7 @@ h2 {
 	text-align: center;
 	margin: 0 0 0 0;
 	padding: 50px 0 30px 0;
-
 }
-
 h3 {
 	@include fontSize(18);
 	color: $drkgrey;
@@ -111,9 +87,7 @@ h3 {
 	text-align: center;
 	margin: 0;
 	padding: 10px 0 ;
-
 }
-
 h4 {
 	@include fontSize(10);
 	color: $drkgrey;
@@ -123,7 +97,6 @@ h4 {
 	padding: 20px 0 0 0;
 	text-align: center;
 }
-
 h5, h6 {
 	@include fontSize(14);
 	color: $pink;
@@ -134,55 +107,44 @@ h5, h6 {
 	text-align: center;
 	padding: 0;
 }
-
 h6 {
 	padding: 0 0 20px 0;
 }
 
-
-
 //Header Section
-
 header {
-  /* Location of the image */
-  background-image: url(../images/hero-banner.jpg);
+	/* Location of the image */
+	background-image: url(../images/hero-banner.jpg);
+
+	/* Image is centered vertically and horizontally at all times */
+	background-position: center center;
+
+	/* Image doesn't repeat */
+	background-repeat: no-repeat;
+
+	/* Makes the image fixed in the viewport so that it doesn't move when 
+	 the content height is greater than the image height */
+	background-attachment: fixed;
+
+	/* This is what makes the background image rescale based on its container's size */
+	background-size: cover;
+
+	/* Pick a solid background color that will be displayed while the background image is loading */
+	background-color:#464646;
   
-  /* Image is centered vertically and horizontally at all times */
-  background-position: center center;
-  
-  /* Image doesn't repeat */
-  background-repeat: no-repeat;
-  
-  /* Makes the image fixed in the viewport so that it doesn't move when 
-     the content height is greater than the image height */
-  background-attachment: fixed;
-  
-  /* This is what makes the background image rescale based on its container's size */
-  background-size: cover;
-  
-  /* Pick a solid background color that will be displayed while the background image is loading */
-  background-color:#464646;
-  
-  /* SHORTHAND CSS NOTATION
-   * background: url(background-photo.jpg) center center cover no-repeat fixed;
-   */
+	// SHORTHAND CSS NOTATION
+	// background: url(background-photo.jpg) center center cover no-repeat fixed;
 }
 
 //Top Bar
-
 .topNav {
 	display: flex;
 	flex: 1 1 auto;
-
 }
-
 .hamburger .fa {
 	color: white;
-
 }
-
 .social {
-
 	color: white;
 	ul {
 		list-style-type: none;
@@ -191,15 +153,12 @@ header {
 		display: inline-block;
 		padding: 10px
 	}
-
 }
 
 //Hero Image
-
 .hero {
 
 }
-
 img.logo {
 	max-width: 100%;
 }
@@ -211,19 +170,7 @@ img.logo {
 	flex-wrap: wrap;
 	justify-content: center;
 }
-
 .field1 {
-	justify-content: center;
-	margin: 0;
-	padding: 0;
-		p {
-		@include fontSize(10);
-		color: white;
-		font-weight: 400;
-	}
-}
-
-.field2 {
 	justify-content: center;
 	margin: 0;
 	padding: 0;
@@ -233,7 +180,16 @@ img.logo {
 		font-weight: 400;
 	}
 }
-
+.field2 {
+	justify-content: center;
+	margin: 0;
+	padding: 0;	
+	p {
+		@include fontSize(10);
+		color: white;
+		font-weight: 400;
+	}
+}
 input.keywords, .location {
 	background: rgba(255, 255, 255, 0.25); 
 	border-radius: 4px;
@@ -246,16 +202,11 @@ input.keywords, .location {
 	padding: 15px;
 	margin: 0 20px 0 0;
 }
-
 .subText {
 	@include fontSize(10);
 	color: white;
 	font-weight: 400;
 }
-
-
-
-
 button {
 	background: $pink;
 	border-radius: 40px;
@@ -268,22 +219,16 @@ button {
 	color: #FFFFFF;
 	letter-spacing: 2px;
 	line-height: 13px;
-
 }
 
-
 //Main Section
-
 main {
 	background: $ltgrey;
 }
-
 .intro {
 	padding: 0;
 	margin: 0;
-
 }
-
 .counter {
 	@include fontSize(14);
 	font-family: 'Lato', sans-serif;
@@ -291,90 +236,68 @@ main {
 	padding: 0 0 20px 0;
 	margin: 0;
 	color: $drkgrey;
-
 }
-
 article {
 	border-radius: 4px;
 	background: white;
 	width: calc(33% - 20px);
 	margin: 10px;
-
-.miles {
-	@include fontSize(10);
-	font-family: 'Lato', sans-serif;
-	text-align: center;
-	padding: 0 0 20px 0;
-	margin: 0;
+	.miles {
+		@include fontSize(10);
+		font-family: 'Lato', sans-serif;
+		text-align: center;
+		padding: 0 0 20px 0;
+		margin: 0;
+	}
 }
-
-
-}
-
 header.lime {
 	background: $lime;
 	border-radius: 4px 4px 0 0;
 }
-
 header.pink {
 	background: $pink;
 	border-radius: 4px 4px 0 0;
 }
-
 header.slate {
 	background: $slate;
 	border-radius: 4px 4px 0 0;
 }
-
 p.description {
-font-family: DroidSerif;
-@include fontSize(14);
-color: $drkgrey;
-line-height: 19px;
-padding: 20px;
-margin: 0;
+	font-family: DroidSerif;
+	@include fontSize(14);
+	color: $drkgrey;
+	line-height: 19px;
+	padding: 20px;
+	margin: 0;
 }
-
 article.moreInfo {
 	padding: 0;
 	margin: 0;
 }
-
-article a{
+article a {
 	color: $slate;
 	text-decoration: none;
 	font-family: 'Lato', sans-serif;
 	font-weight: 700;
 }
-
 article a:hover {
-		color: $pink;
-	}
-
-
-
-
+	color: $pink;
+}
 
 /* Then we use media queries for targeting other resolutions */
-
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
 
 }
- 
 /* Landscape phone to portrait tablet */
 @media only screen and (max-width: 767px) {
-  header {
-    /* The file size of this background image is 93% smaller
-     * to improve page load speed on mobile internet connections */
-    background-image: url(../images/background-photo-mobile-devices.jpg);
-  }
+	header {
+		/* The file size of this background image is 93% smaller
+		* to improve page load speed on mobile internet connections */
+		background-image: url(../images/background-photo-mobile-devices.jpg);
 	}
- 
+}
 /* Landscape phones and down */
 @media (max-width: 480px) {
 
 }
-
-
-
