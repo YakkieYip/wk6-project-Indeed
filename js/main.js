@@ -1,10 +1,10 @@
 // Create our namespace / empty object
 var myApp = {};
 
-
 myApp.resultsCount = 0; //increments by 25
 myApp.displayCount = 0; //increments by 9
 myApp.pageCount = 0; // increments by 1 at the same time as displaycount increments
+myApp.count = 0;
 // Insert API key name of '.apiKey' into myApp {} and store API key
 myApp.jyipKey = '886387905641973'; // insert personal API key
 myApp.userLocation;
@@ -19,7 +19,6 @@ myApp.userLocation;
 // 		};	
 // 	});
 // };
-
 
 // myApp.input2Listener = function(){
 // 	$('.keywords').on('change', function(){
@@ -80,31 +79,32 @@ myApp.getUserInput = function(){
 	            publisher: myApp.jyipKey, // Publisher ID : Personal API key
 	            v: 2, // API Version : All publishers should be using v.2 | Required 
 	            format: 'json', // Output format of API : 'json'	| default is XML
-	            q: myApp.keywords, 
-	            // 'javascript', // Query : 'javascript'	| default is 'as_and'
-	            l: myApp.location,
-	            // 'toronto', // Location : postal code or 'city, state/province/region' combo.
+	            q: myApp.keywords, // 'javascript', // Query : 'javascript'	| default is 'as_and'
+	            l: myApp.location, // 'toronto', // Location : postal code or 'city, state/province/region' combo.
 	            sort: 'date', // Sort by : relevance  | Can sort by 'date'. Default is 'relevance'.
 	            radius: 25, // Distance from search Location : Default is 25 MILES of 'Location'.
 
 	            /* These could be left default/we didn't need them?:
-	            
 	            st: Site type. To show only job board jobs, use "jobsite". For jobs from direct employer websites use "employer".
+	            jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary". */
 
-	            jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
+	            // jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
 
 	            
-	            */
+	            // */
 	            start: myApp.resultscount,//Results start at this number, beginning with 0. Default is 0.
+
+	            start: myApp.count,//Results start at this number, beginning with 0. Default is 0.
+
 	            limit: 25, // Max num of results returned per query : Default is 10, max 25
+	            start: 25,
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
 	            filter: 1, // Filter duplicate job results. 0 turns off filter. Default is 1.
 	            latlong: 1, // If Latitude AND longitude = 1, gives info per job result. Default is 0.
 	            co: 'ca' // Country : 'ca' aka CAN. | Default is 'us'.
-	            /*
-	            Ryan mentioned we didn't need these, but I don't know why:
-
+	            
+	            /* Ryan mentioned we didn't need these, but I don't know why:
 	            chnl:	// Channel Name: Group API requests to a specific channel
 	            userip:	// The IP number of the end-user to whom the job results will be displayed. This field is required.
 	            useragent: // The User-Agent (browser) of the end-user to whom the job results will be displayed. Can be obtained from "User-Agent" HTTP request header from the end-user. This field is required.
@@ -112,9 +112,8 @@ myApp.getUserInput = function(){
 
 	            NOTE: 'formattedLocation:' and 'formattedLocationFull: will often be IDENTICAL. The exact values differ based on country and the data we have available.
 	            radius is optional; it will only be included when appropriate.
+	            /* Note that the ordering of response fields is not guaranteed */
 
-	            * Note that the ordering of response fields is not guaranteed
-	            */   
 	        }
 	    } // end data
 	}).then(function(res) { // promise
@@ -123,6 +122,14 @@ myApp.getUserInput = function(){
 
 		myApp.jobSearchResults = res.results; //array of 25 job listings
 		console.log(myApp.jobSearchResults);
+
+// myApp.jobSearchResults.showing.start = res.results.start;
+// myApp.jobSearchResults.showing.end = res.results.end;
+// myApp.jobSearchResults.showing.totalResults = res.results.totalResults;
+// console.log(myApp.jobSearchResults.showing.start);
+// console.log(myApp.jobSearchResults.showing.end);
+// console.log(myApp.jobSearchResults.showing.totalResults);
+
 
 		myApp.count += res.results.length; //set a counter variable for page loading logic
 
@@ -186,13 +193,12 @@ $('a.top').click(function () {
   return false;
 });
 
-	
-
 myApp.getLocation = function(){
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(function(position){
 			myApp.userLocation = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-myApp.getCity(myApp.userLocation);
+			
+			myApp.getCity(myApp.userLocation);
 		});	
 	} else {
 		alert("Geolocation is not supported by your browser");
@@ -212,27 +218,6 @@ myApp.getCity = function(coordinates){
 				longt: coordinates.longitude
 			}
 
-// latt: "43.67023",
-// longt: "-79.38676" //Toronto
-// latt: "43.79104",
-// "-79.54052" //Vaughn
-// latt: "48.40690",
-// "-89.24594" //Thunder Bay
-// latt: "43.95084",
-// "-78.29176" //Port Hope
-// latt: "43.91924",
-// "-80.09741" //Orangeville
-// latt: "43.58821",
-// "-79.64172" //Mississauga
-// latt: "44.23142",
-// "-76.48101" //Kingston
-// latt: "43.84404",
-// "-79.01822" //Ajax
-// latt: "42.99176",
-// "-79.25059" //Welland
-// latt: "48.40690",
-// "-89.24594" //Thunder Bay
-
 	}).then(function(reverseGeocodingResult) {
 
 		myApp.userLocation.city = reverseGeocodingResult.city;
@@ -241,5 +226,7 @@ myApp.getCity = function(coordinates){
 
 		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
 		// $('.location').val(myApp.userLocation.postalCode)
+	
+	myApp.searchListener();
 	});
 };
