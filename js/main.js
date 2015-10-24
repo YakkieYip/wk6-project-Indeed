@@ -2,9 +2,12 @@
 var myApp = {};
 
 
-myApp.count = 0;
+myApp.resultsCount = 0; //increments by 25
+myApp.displayCount = 0; //increments by 9
+myApp.pageCount = 0; // increments by 1 at the same time as displaycount increments
 // Insert API key name of '.apiKey' into myApp {} and store API key
 myApp.jyipKey = '886387905641973'; // insert personal API key
+myApp.userLocation;
 
 // Add event listener onto page, once clicked grab input field values by user
 // myApp.input1Listener = function(){
@@ -92,7 +95,7 @@ myApp.getUserInput = function(){
 
 	            
 	            */
-	            start: myApp.count,//Results start at this number, beginning with 0. Default is 0.
+	            start: myApp.resultscount,//Results start at this number, beginning with 0. Default is 0.
 	            limit: 25, // Max num of results returned per query : Default is 10, max 25
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
@@ -149,30 +152,32 @@ myApp.createJobArticle = function(job){
 	var $header = $('<header>').addClass('lime');
 	var $howRecent = $('<h4>').text(job.formattedRelativeTime);
 	var $jobtitle = $('<h3>').text(job.jobtitle);
-	$header.append($jobtitle);
+	$header.append($howRecent, $jobtitle);
 	//body
 	var $description = $('<p>').addClass('description').html(job.snippet);
+	var $link = $('<a>').attr('href', job.url).text('Learn More');
 	//footer
 	var $footer = $('<footer>').addClass('moreInfo');
 	var $companyInfo = $('<h5>').text(job.company);
-	$footer.append($companyInfo);
+	var $cityProv = $('<h6>').text(job.formattedLocationFull);
+	$footer.append($companyInfo, $cityProv);
 
 	// assemble all variables into one article element
-	$article.append($header, $description, $footer);
+	$article.append($header, $description, $link, $footer);
 	return $article;
 };
 
 //initialize Listener
 myApp.init = function(){
-// MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE
 	myApp.getLocation();
+	myApp.searchListener();
 };
 
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();
-	$(".keywords").val("Javascript");
-	$(".location").val("Toronto");	
+	// $(".keywords").val("Javascript");
+	// $(".location").val("Toronto");	
 });
 
 //Back to top function
@@ -181,12 +186,7 @@ $('a.top').click(function () {
   return false;
 });
 
-// MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE MIKE
-
-// http://stackoverflow.com/questions/4013606/google-maps-how-to-get-country-state-province-region-city-given-a-lat-long-va
-// http://maps.googleapis.com/maps/api/geocode/json?latlng=43.766483,-79.41209&sensor=false
-
-	myApp.userLocation;
+	
 
 myApp.getLocation = function(){
 	if(navigator.geolocation){
@@ -241,9 +241,5 @@ myApp.getCity = function(coordinates){
 
 		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
 		// $('.location').val(myApp.userLocation.postalCode)
-
-		$('.keywords').val('Javascript');
-	
-	myApp.searchListener();
 	});
 };
