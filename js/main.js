@@ -1,9 +1,13 @@
 // Create our namespace / empty object
 var myApp = {};
 
+myApp.resultsCount = 0; //increments by 25
+myApp.displayCount = 0; //increments by 9
+myApp.pageCount = 0; // increments by 1 at the same time as displaycount increments
 myApp.count = 0;
 // Insert API key name of '.apiKey' into myApp {} and store API key
 myApp.jyipKey = '886387905641973'; // insert personal API key
+myApp.userLocation;
 
 // Add event listener onto page, once clicked grab input field values by user
 // myApp.input1Listener = function(){
@@ -84,7 +88,14 @@ myApp.getUserInput = function(){
 	            st: Site type. To show only job board jobs, use "jobsite". For jobs from direct employer websites use "employer".
 	            jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary". */
 
+	            // jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
+
+	            
+	            // */
+	            start: myApp.resultscount,//Results start at this number, beginning with 0. Default is 0.
+
 	            start: myApp.count,//Results start at this number, beginning with 0. Default is 0.
+
 	            limit: 25, // Max num of results returned per query : Default is 10, max 25
 	            start: 25,
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
@@ -112,12 +123,12 @@ myApp.getUserInput = function(){
 		myApp.jobSearchResults = res.results; //array of 25 job listings
 		console.log(myApp.jobSearchResults);
 
-myApp.jobSearchResults.showing.start = res.results.start;
-myApp.jobSearchResults.showing.end = res.results.end;
-myApp.jobSearchResults.showing.totalResults = res.results.totalResults;
-console.log(myApp.jobSearchResults.showing.start);
-console.log(myApp.jobSearchResults.showing.end);
-console.log(myApp.jobSearchResults.showing.totalResults);
+// myApp.jobSearchResults.showing.start = res.results.start;
+// myApp.jobSearchResults.showing.end = res.results.end;
+// myApp.jobSearchResults.showing.totalResults = res.results.totalResults;
+// console.log(myApp.jobSearchResults.showing.start);
+// console.log(myApp.jobSearchResults.showing.end);
+// console.log(myApp.jobSearchResults.showing.totalResults);
 
 
 		myApp.count += res.results.length; //set a counter variable for page loading logic
@@ -148,29 +159,32 @@ myApp.createJobArticle = function(job){
 	var $header = $('<header>').addClass('lime');
 	var $howRecent = $('<h4>').text(job.formattedRelativeTime);
 	var $jobtitle = $('<h3>').text(job.jobtitle);
-	$header.append($jobtitle);
+	$header.append($howRecent, $jobtitle);
 	//body
 	var $description = $('<p>').addClass('description').html(job.snippet);
+	var $link = $('<a>').attr('href', job.url).text('Learn More');
 	//footer
 	var $footer = $('<footer>').addClass('moreInfo');
 	var $companyInfo = $('<h5>').text(job.company);
-	$footer.append($companyInfo);
+	var $cityProv = $('<h6>').text(job.formattedLocationFull);
+	$footer.append($companyInfo, $cityProv);
 
 	// assemble all variables into one article element
-	$article.append($header, $description, $footer);
+	$article.append($header, $description, $link, $footer);
 	return $article;
 };
 
 //initialize Listener
 myApp.init = function(){
 	myApp.getLocation();
+	myApp.searchListener();
 };
 
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();
-	$(".keywords").val("Javascript");
-	$(".location").val("Toronto");	
+	// $(".keywords").val("Javascript");
+	// $(".location").val("Toronto");	
 });
 
 //Back to top function
