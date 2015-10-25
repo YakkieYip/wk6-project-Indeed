@@ -13,8 +13,8 @@
 <!-- Header Section -->
 		<header>
 			<div class="topNav wrapper">
-				<div class="hamburger topWrap"><i class="fa fa-bars"></i></div>
-				<div class="social topWrap">
+				<div class="hamburger"><i class="fa fa-bars"></i></div>
+				<div class="social">
 					<ul>
 						<li><i class="fa fa-facebook"></i></li>
 						<li><i class="fa fa-twitter"></i></li>
@@ -30,12 +30,12 @@
 
 <!-- Hidden div to prompt user to type in both input fields -->
 			<div class="hidden hide">
-				<p>Please type in both fields.</p>
+				<p>Please fill out both fields</p>
 			</div>
 
 			<form class="mainForm wrapper">
 				<div class="field1 wrapper">
-					<input class="keywords" type="text" name="keywords" placeholder="ie: Javascript Developer">
+					<input class="keywords" type="text" name="keywords" placeholder="ie: Javascript Developer" required>
 					<p class="instructions">job title, keywords or company name</p>
 				</div>
 				<div class="field2 wrapper">
@@ -65,14 +65,23 @@
 		</main>
 
 <!-- Footer Section -->
-		<footer id="footer">
+		<footer class="mainFooter" id="footer">
+		<div class ="footerText wrapper">
+			<p>Designed and Developed by Lindsay Pichie, Jackie Yip and Mike Kalin</p>
+		</div>
+		<div class="social">
+					<ul>
+						<li><i class="fa fa-facebook"></i></li>
+						<li><i class="fa fa-twitter"></i></li>
+						<li><i class="fa fa-instagram"></i></li>
+					</ul>
+				</div>
 	<!-- Hidden 'Load More' button that appears when the first 9 results are on the page-->
-			
-
-		</footer>
 
 <!-- Back to top icon -->
 		<a class="top" href="#">Back to top</a>
+
+		</footer>
 
 <!-- Load Jquery Library  -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
