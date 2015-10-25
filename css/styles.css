@@ -158,8 +158,13 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   color: white;
   display: none; }
 
-.show {
-  color: white;
+input:required {
+  border-color: red !important; }
+
+input:required + label {
+  color: red; }
+
+label {
   display: block; }
 
 html {
@@ -181,7 +186,8 @@ h1 {
   font-size: 8.2rem;
   font-weight: 700;
   color: #FFFFFF;
-  line-height: 85px; }
+  line-height: 50px;
+  margin: 40px 0 45px 0; }
 
 h2 {
   font-size: 52px;
@@ -190,14 +196,14 @@ h2 {
   line-height: 55px;
   text-align: center;
   margin: 0 0 0 0;
-  padding: 50px 0 30px 0; }
+  padding: 50px 0 0px 0; }
 
 h3 {
   font-size: 18px;
   font-size: 1.8rem;
   color: #444444;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   line-height: 22px;
   text-transform: uppercase;
   /* text-align: center; */
@@ -229,6 +235,39 @@ h5, h6 {
 h6 {
   padding: 0 0 20px 0; }
 
+p.subText {
+  /* Stop wasting time an: */
+  font-size: 20px;
+  font-size: 2rem;
+  font-weight: 200;
+  opacity: 0.69;
+  padding: 0 0 50px 0;
+  color: #EFFF9B;
+  line-height: 26px; }
+
+p.instructions {
+  font-size: 12px;
+  font-size: 1.2rem;
+  font-family: 'Lato', sans-serif;
+  color: #FFFFFF;
+  letter-spacing: 0px;
+  line-height: 15px; }
+
+.show {
+  text-align: center; }
+
+b, strong {
+  font-weight: 700;
+  color: #F99D88; }
+
+.counter p {
+  font-size: 12px;
+  font-size: 1.2rem;
+  font-family: 'Lato', sans-serif;
+  color: #909C9A;
+  line-height: 17px;
+  margin: 30px 0 20px 0; }
+
 header {
   /* Location of the image */
   background-image: url(../images/hero-banner.jpg);
@@ -250,10 +289,18 @@ header {
   display: flex;
   -webkit-flex: 1 1 auto;
       -ms-flex: 1 1 auto;
-          flex: 1 1 auto; }
+          flex: 1 1 auto;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 50px 10px 10px 10px; }
 
 .hamburger .fa {
-  color: white; }
+  color: white;
+  font-size: 24px; }
 
 .social {
   color: white; }
@@ -261,7 +308,10 @@ header {
     list-style-type: none; }
   .social li {
     display: inline-block;
-    padding: 10px; }
+    padding: 0 30px 0 0;
+    font-size: 20px;
+    margin: 0;
+    line-height: 0px; }
 
 #results {
   text-align: center; }
@@ -312,11 +362,16 @@ img.logo {
 
 .buttoncontainer {
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  padding: 50px 0 100px 0; }
+
+input:focus {
+  border-style: solid;
+  border-color: #F99D88; }
 
 input.keywords, .location {
   background: rgba(255, 255, 255, 0.25);
-  border-radius: 4px;
+  border-radius: 40px;
   border-style: none;
   color: white;
   font-family: Montserrat-Regular;
@@ -326,7 +381,7 @@ input.keywords, .location {
   line-height: 18px;
   padding: 15px;
   margin: 0 20px 0 0;
-  padding: 15px 60px 15px 20px;
+  padding: 15px 70px 15px 20px;
   margin: 0 30px 0 0; }
 
 .subText {
@@ -351,12 +406,14 @@ button, .btn {
   padding: 15px 80px;
   margin: 20px; }
 
+.btn {
+  margin: 50px 0 60px 0; }
+
 main {
   background: #F4F4F4; }
 
 .intro {
-  padding: 0;
-  margin: 0; }
+  padding: 0; }
 
 .counter {
   font-size: 14px;
@@ -403,7 +460,7 @@ p.description {
   font-size: 14px;
   font-size: 1.4rem;
   color: #444444;
-  line-height: 19px;
+  line-height: 21px;
   padding: 20px;
   margin: 0; }
 
@@ -419,6 +476,31 @@ article a {
 
 article a:hover {
   color: #F99D88; }
+
+.moreinfo {
+  position: absolute;
+  bottom: 0;
+  right: 3%;
+  text-align: center; }
+
+.footerText p {
+  margin: 25px;
+  font-size: 12px;
+  font-size: 1.2rem;
+  color: white;
+  opacity: 0.5;
+  font-family: PTSerif-Regular;
+  line-height: 16px; }
+
+.mainFooter {
+  background: #444444;
+  margin: 0;
+  padding: 100px;
+  text-align: center; }
+
+.top {
+  text-decoration: none;
+  color: white; }
 
 /* Then we use media queries for targeting other resolutions */
 /* Portrait tablet and small desktops */
