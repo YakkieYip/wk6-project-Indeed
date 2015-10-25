@@ -81,12 +81,13 @@ h3 {
 	@include fontSize(18);
 	color: $drkgrey;
 	font-weight: 700;
-	letter-spacing: 2.5px;
-	line-height: 22px;
-	text-transform: uppercase;
-	text-align: center;
-	margin: 0;
-	padding: 10px 0 ;
+    letter-spacing: 2.5px;
+    line-height: 22px;
+    text-transform: uppercase;
+    /* text-align: center; */
+    /* margin: 0; */
+    padding: 10px 0;
+    vertical-align: middle;
 }
 h4 {
 	@include fontSize(10);
@@ -155,8 +156,13 @@ header {
 	}
 }
 
+#results {
+	text-align: center;
+}
+
 //Hero Image
 .hero {
+	    text-align: center;
 
 }
 img.logo {
@@ -190,6 +196,12 @@ img.logo {
 		font-weight: 400;
 	}
 }
+
+.buttoncontainer {
+	width: 100%;
+    text-align: center;
+}
+
 input.keywords, .location {
 	background: rgba(255, 255, 255, 0.25); 
 	border-radius: 4px;
@@ -201,13 +213,18 @@ input.keywords, .location {
 	line-height: 18px;
 	padding: 15px;
 	margin: 0 20px 0 0;
+	padding: 15px 60px 15px 20px;
+    margin: 0 30px 0 0;
 }
 .subText {
 	@include fontSize(10);
 	color: white;
 	font-weight: 400;
 }
-button {
+
+
+
+button, .btn {
 	background: $pink;
 	border-radius: 40px;
 	border-style: none;
@@ -219,6 +236,8 @@ button {
 	color: #FFFFFF;
 	letter-spacing: 2px;
 	line-height: 13px;
+    padding: 15px 80px;
+    margin: 20px;
 }
 
 //Main Section
@@ -250,17 +269,25 @@ article {
 		margin: 0;
 	}
 }
+
+
 header.lime {
 	background: $lime;
 	border-radius: 4px 4px 0 0;
+	min-height: 150px;
+    padding: 0 10px 0 10px;
 }
 header.pink {
 	background: $pink;
 	border-radius: 4px 4px 0 0;
+	min-height: 150px;
+    padding: 0 10px 0 10px;
 }
 header.slate {
 	background: $slate;
 	border-radius: 4px 4px 0 0;
+	min-height: 150px;
+    padding: 0 10px 0 10px;
 }
 p.description {
 	font-family: DroidSerif;
