@@ -58,7 +58,7 @@ myApp.searchListener = function(){
   		myApp.location = $('.location').val();
   		if( myApp.keywords.length >= 2 && myApp.location.length >= 2){
 	  		$('.hidden').removeClass('show').addClass('hide');	
-	  		myApp.count = 0; //reset the counter
+	  		// myApp.count = 0; //reset the counter
 	  		myApp.getUserInput();
   		} else {
   			console.log('poop');
@@ -69,7 +69,10 @@ myApp.searchListener = function(){
 
 // Create a method to .ajax call Indeed jobs
 myApp.getUserInput = function(){
-	console.log(myApp.count);
+
+console.log("getUserInput");
+console.log(myApp.count);
+
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
 	    dataType: 'json',
@@ -93,11 +96,11 @@ myApp.getUserInput = function(){
 
 	            
 	            // */
-	            start: myApp.resultscount,//Results start at this number, beginning with 0. Default is 0.
+	            // start: myApp.resultscount,//Results start at this number, beginning with 0. Default is 0.
 
 	            start: myApp.count,//Results start at this number, beginning with 0. Default is 0.
 
-	            limit: 25, // Max num of results returned per query : Default is 10, max 25
+	            limit: 9, // Max num of results returned per query : Default is 10, max 25
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
 	            filter: 1, // Filter duplicate job results. 0 turns off filter. Default is 1.
@@ -118,22 +121,22 @@ myApp.getUserInput = function(){
 	    } // end data
 	}).then(function(res) { // promise
 		myApp.ajaxResults = res; //save our results in a global variable to access later
-		console.log(myApp.ajaxResults);
+
+console.log("ajaxResults");
+console.log(myApp.ajaxResults);
 
 		myApp.jobSearchResults = res.results; //array of 25 job listings
-		console.log(myApp.jobSearchResults);
 
+// console.log("jobSearchResults");
+// console.log(myApp.jobSearchResults);
+
+$('span.start').text(myApp.ajaxResults.start);
+$('span.end').text(myApp.ajaxResults.end);
+$('span.totalResults').text(myApp.ajaxResults.totalResults);
 
 // console.log(myApp.ajaxResults.start);
 // console.log(myApp.ajaxResults.end);
 // console.log(myApp.ajaxResults.totalResults);
-// myApp.jobSearchResults.showing.start = res.results.start;
-// myApp.jobSearchResults.showing.end = res.results.end;
-// myApp.jobSearchResults.showing.totalResults = res.results.totalResults;
-// console.log(myApp.jobSearchResults.showing.start);
-// console.log(myApp.jobSearchResults.showing.end);
-// console.log(myApp.jobSearchResults.showing.totalResults);
-
 
 		myApp.count += res.results.length; //set a counter variable for page loading logic
 
@@ -147,6 +150,10 @@ myApp.getUserInput = function(){
 
 //create an array of article elements
 myApp.createJobArticles = function(resultsArray){
+
+console.log("createJobArticles");
+console.log(myApp.count);
+
 	var objectArray = [];
 	$.each(resultsArray, function(index, value){
 		var articleObject = myApp.createJobArticle(value);
@@ -187,7 +194,7 @@ myApp.init = function(){
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();
-	// $(".keywords").val("Javascript");
+	$(".keywords").val("Javascript");
 	// $(".location").val("Toronto");	
 });
 
@@ -230,7 +237,5 @@ myApp.getCity = function(coordinates){
 
 		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
 		// $('.location').val(myApp.userLocation.postalCode)
-	
-	myApp.searchListener();
 	});
 };
