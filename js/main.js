@@ -3,7 +3,7 @@ var myApp = {};
 
 myApp.displayCount = 0; //increments by 9
 myApp.pageCount = 0; // increments by 1 at the same time as displaycount increments
-myApp.resultsCount = 0;
+//myApp.resultsCount = 0;  // LP: Commenting out as we might not need this
 // Insert API key name of '.apiKey' into myApp {} and store API key
 myApp.jyipKey = '886387905641973'; // insert personal API key
 myApp.userLocation;
@@ -58,7 +58,7 @@ myApp.searchListener = function(){
   		if( myApp.keywords.length >= 2 && myApp.location.length >= 2){
 	  		$('.hidden').removeClass('show').addClass('hide');	
 	  		// myApp.resultsCount = 0; //reset the counter
-	  		myApp.getUserInput();
+	  		myApp.getUserInput(myApp.displayCount);
   		} else {
   			console.log('poop');
   			$('.hidden').removeClass('hide').addClass('show');
@@ -67,7 +67,7 @@ myApp.searchListener = function(){
 };
 
 // Create a method to .ajax call Indeed jobs
-myApp.getUserInput = function(){
+myApp.getUserInput = function(startCnt){
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
 	    dataType: 'json',
@@ -93,7 +93,7 @@ myApp.getUserInput = function(){
 
 
 	            limit: 9, // Max num of results returned per query : Default is 10, max 25
-	            start: myApp.resultsCount,//Results start at this number, beginning with 0. Default is 0.
+	            start: startCnt,//Results start at this number, beginning with 0. Default is 0.
 	            // start: 0, //global variable - chunks of 9, make it DYNAMIC
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
@@ -112,15 +112,25 @@ myApp.getUserInput = function(){
 	        }
 	    } // end data
 	}).then(function(res) { // promise
-		myApp.ajaxResults = res; //save our results in a global variable to access later
-		console.log(myApp.ajaxResults);
+		//myApp.ajaxResults = res; //save our results in a global variable to access later
+		//console.log(myApp.ajaxResults);
 
-		myApp.jobSearchResults = res.results; //array of 25 job listings
-		console.log(myApp.jobSearchResults);
+		//myApp.jobSearchResults = res.results; //array of 25 job listings
+		//console.log(myApp.jobSearchResults);
 
-		$('span.start').text(myApp.ajaxResults.start);
-		$('span.end').text(myApp.ajaxResults.end);
-		$('span.totalResults').text(myApp.ajaxResults.totalResults);
+
+		// Increment our global counter by 9 everytime we get results
+		myApp.displayCount += 9;
+
+		// start is always 1, end is our displayCount
+		myApp.showNumJobs(1, res.end, res.totalResults);
+		myApp.createResults(res.results);
+
+		if ($(".btnMore").length === 0) {
+			myApp.loadJobsBtn();
+		}
+
+		
 		
 // myApp.jobSearchResults.showing.start = res.results.start;
 // myApp.jobSearchResults.showing.end = res.results.end;
@@ -129,23 +139,58 @@ myApp.getUserInput = function(){
 // console.log(myApp.jobSearchResults.showing.end);
 // console.log(myApp.jobSearchResults.showing.totalResults);
 		
-		myApp.resultsCount += res.results.length; //set a counter variable for page loading logic
+		//myApp.resultsCount += res.results.length; //set a counter variable for page loading logic
 		// myApp.counter(); //should the counter method be called here?
 
-		var allArticleObjects = myApp.createJobArticles(myApp.jobSearchResults);
-		$('.container').empty();
-		$.each(allArticleObjects, function(index, value){
-			$('.container').append(value);
-		// myApp.counter();
-		});
 	});
 }; // end myApp.init
 
-myApp.loadListener = function(){
-	$('.loadMore').on('submit', function(e){
-		e.preventDefault();
-		
+myApp.showNumJobs = function(start, end, total) {
+	// Only create the results element upon first searching for a job
+	if (end <= 9) {
+		var s = $('<span>').addClass("start").text(start),
+		e = $('<span>').addClass("end").text(end),
+		t = $('<span>').addClass("totalResults").text(total),
+		p = $('<p>').append("Showing ")
+					.append(s)
+					.append(" - ")
+					.append(e)
+					.append(" of ")
+					.append(t)
+					.append(" new opportunities"),
+		c = $('<div>').addClass("counter").append(p),
+		h2 = $('<h2>').text("We found the following jobs for you...").append(c);
+		intro = $('<div>').addClass("intro").addClass("wrapper").append(h2);
+
+		$('#results').prepend(intro);
+	} else {
+		$('span.end').text(end);
+	}
+
+}
+
+myApp.loadJobsBtn = function() {
+	var buttonInput = $('<button type="button" onclick="myApp.loadMore()">').addClass('btn btnMore').text("Show More");
+	$('#results').append(buttonInput);
+}
+
+myApp.createResults = function(jobResults) {
+	var allArticleObjects = myApp.createJobArticles(jobResults);
+	//$('.container').empty();
+	$.each(allArticleObjects, function(index, value){
+		$('.container').append(value);
+		// myApp.counter();
 	});
+
+}
+
+myApp.loadMore = function(){
+	// $('.loadMore').on('submit', function(e){
+	// 	e.preventDefault();
+		console.log("Loading More");
+
+		myApp.getUserInput(myApp.displayCount);
+	// });
 };
 
 // myApp.counter = function(){
@@ -168,19 +213,32 @@ myApp.loadListener = function(){
 //create an array of article elements
 myApp.createJobArticles = function(resultsArray){
 	var objectArray = [];
+	highlights = ["lime", "pink", "slate"];
+	highlightIndex = 0;
+	highlightColor = "";
 	$.each(resultsArray, function(index, value){
-		var articleObject = myApp.createJobArticle(value);
+
+		highlightColor = highlights[highlightIndex];
+
+		var articleObject = myApp.createJobArticle(value, highlightColor);
 		objectArray.push(articleObject);
+		if ( (index+1) % 3 === 0 ) {
+			if (highlightIndex > 2) {
+				highlightIndex = 0;
+			} else {
+				highlightIndex++;
+			}
+		}
 	});
 	return objectArray;	
 };
 
 //create the html of one article element
-myApp.createJobArticle = function(job){
+myApp.createJobArticle = function(job, highlightColor){
 	// var htmlText = '';
 	var $article = $('<article>').addClass('equalHM eq');
 	//header element
-	var $header = $('<header>').addClass('lime');
+	var $header = $('<header>').addClass(highlightColor);
 	var $howRecent = $('<h4>').text(job.formattedRelativeTime);
 	var $jobTitle = $('<h3>').text(job.jobtitle);
 	$header.append($howRecent, $jobTitle);
@@ -203,7 +261,7 @@ myApp.createJobArticle = function(job){
 myApp.init = function(){
 	myApp.getLocation();
 	myApp.searchListener();
-	myApp.loadListener();
+	//myApp.loadListener();
 };
 
 // On document ready, call initialize method.
