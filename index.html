@@ -13,8 +13,8 @@
 <!-- Header Section -->
 		<header>
 			<div class="topNav wrapper">
-				<div class="hamburger topWrap"><i class="fa fa-bars"></i></div>
-				<div class="social topWrap">
+				<div class="hamburger"><i class="fa fa-bars"></i></div>
+				<div class="social">
 					<ul>
 						<li><i class="fa fa-facebook"></i></li>
 						<li><i class="fa fa-twitter"></i></li>
@@ -30,12 +30,12 @@
 
 <!-- Hidden div to prompt user to type in both input fields -->
 			<div class="hidden hide">
-				<p>Please type in both fields.</p>
+				<p>Please fill out both fields</p>
 			</div>
 
 			<form class="mainForm wrapper">
 				<div class="field1 wrapper">
-					<input class="keywords" type="text" name="keywords" placeholder="ie: Javascript Developer">
+					<input class="keywords" type="text" name="keywords" placeholder="ie: Javascript Developer" required>
 					<p class="instructions">job title, keywords or company name</p>
 				</div>
 				<div class="field2 wrapper">
@@ -43,151 +43,50 @@
 					<p class="instructions">city or province</p>
 				</div>
 				<div class="buttoncontainer">
-				<input type="submit" value="Hook me up" class="btn search">
+					<input type="submit" value="Hook me up" class="btn search">
 					<!-- <input type="submit" value="Hook me up"> -->
 				</div>
 			</form>
 		</header>
 
 <!-- Main Section + Results -->
-		<main>
-			<div class="intro wrapper">
+		<main id="results">
+			<!--div class="intro wrapper">
 				<h2>We found the following jobs for you...</h2>
 				<div class="counter">
-					<p>Showing <span class="start">...</span> - <span class="end">...</span> of <span class="totalResults">...</span> new opportunities</p>
-				</div>
-			</div>
+		           <p>Showing <span class="start">...</span> - <span class="end">...</span> of <span class="totalResults">...</span> new opportunities</p>
+	       		</div>
+			</div -->
 
 			<div class="container wrapper equalHMWrap">	
 <!-- Lime containers -->
-				<article class="equalHM eq">
-					<header class="lime">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
-				<article class="equalHM eq">
-					<header class="lime">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
-				<article class="equalHM eq">
-					<header class="lime">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
-
-<!-- Pink containers -->
-				<article class="equalHM eq">
-					<header class="pink">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
-				<article class="equalHM eq">
-					<header class="pink">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
-				<article class="equalHM eq">
-					<header class="pink">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
-
-<!-- Slate containers -->
-				<article class="equalHM eq">
-					<header class="slate">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
-				<article class="equalHM eq">
-					<header class="slate">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
-				<article class="equalHM eq">
-					<header class="slate">
-						<h4>Posted 3 days ago</h4>
-						<h3>Job title</h3>
-						<p class="miles">xx miles away from you</p>
-					</header>
-					<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam molestias quasi reprehenderit, hrgg conseur neque alias eos recusandae velit hgehheg ... <a href="#">Learn more</a></p>
-					<footer class="moreInfo">
-						<h5>Company Name</h5>
-						<h6>City, Province</h6>
-					</footer>
-				</article>
 			</div>
+
 		</main>
 
 <!-- Footer Section -->
-		<footer></footer>
+		<footer class="mainFooter" id="footer">
+		<div class ="footerText wrapper">
+			<p>Designed and Developed by Lindsay Pichie, Jackie Yip and Mike Kalin</p>
+		</div>
+		<div class="social">
+					<ul>
+						<li><i class="fa fa-facebook"></i></li>
+						<li><i class="fa fa-twitter"></i></li>
+						<li><i class="fa fa-instagram"></i></li>
+					</ul>
+				</div>
+	<!-- Hidden 'Load More' button that appears when the first 9 results are on the page-->
 
 <!-- Back to top icon -->
 		<a class="top" href="#">Back to top</a>
 
+		</footer>
+
 <!-- Load Jquery Library  -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Load in JS file  -->
+		<script src="js/underscore.js"></script>
 		<script src="js/main.js"></script>
-
-		<script type="text/javascript">
-				$('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');
-		</script>
 	</body>
 </html>

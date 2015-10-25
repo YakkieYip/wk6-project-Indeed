@@ -43,10 +43,24 @@ $drkgrey: #444444;
 	color: white;
 	display: none;
 }
-.show {
-	color: white;
-	display: block;
+// .show {
+// 	color: white;
+// 	display: block;
+// }
+
+input:required
+{
+  border-color: red !important;
 }
+
+input:required + label {
+  color: red;
+}
+
+label {
+  display: block;
+}
+
 
 //Typography
 html {
@@ -67,7 +81,8 @@ h1 {
 	@include fontSize(82);
 	font-weight: 700;
 	color: #FFFFFF;
-	line-height: 85px;
+    line-height: 50px;
+    margin: 40px 0 45px 0;
 }
 h2 {
 	@include fontSize(52);
@@ -75,18 +90,20 @@ h2 {
 	line-height: 55px;
 	text-align: center;
 	margin: 0 0 0 0;
-	padding: 50px 0 30px 0;
+	padding: 50px 0 0px 0;
 }
+
 h3 {
 	@include fontSize(18);
 	color: $drkgrey;
 	font-weight: 700;
-	letter-spacing: 2.5px;
-	line-height: 22px;
-	text-transform: uppercase;
-	text-align: center;
-	margin: 0;
-	padding: 10px 0 ;
+    letter-spacing: 2px;
+    line-height: 22px;
+    text-transform: uppercase;
+    /* text-align: center; */
+    /* margin: 0; */
+    padding: 10px 0;
+    vertical-align: middle;
 }
 h4 {
 	@include fontSize(10);
@@ -110,6 +127,42 @@ h5, h6 {
 h6 {
 	padding: 0 0 20px 0;
 }
+
+p.subText {
+	/* Stop wasting time an: */
+	@include fontSize(20);
+	font-weight: 200;
+	opacity: 0.69;
+	padding: 0 0 50px 0;
+	color: $lime;
+	line-height: 26px;
+}
+
+p.instructions {
+	@include fontSize(12);
+	font-family: 'Lato', sans-serif;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+	line-height: 15px;	
+}
+
+.show {
+	text-align: center;
+}
+
+b, strong {
+    font-weight: 700;
+    color: $pink;
+ }
+
+.counter p {
+	@include fontSize(12);
+	font-family: 'Lato', sans-serif;
+	color: #909C9A;
+	line-height: 17px;
+	margin: 30px 0 20px 0;
+}
+
 
 //Header Section
 header {
@@ -140,9 +193,13 @@ header {
 .topNav {
 	display: flex;
 	flex: 1 1 auto;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 50px 10px 10px 10px;
 }
 .hamburger .fa {
 	color: white;
+	font-size: 24px;
 }
 .social {
 	color: white;
@@ -151,12 +208,20 @@ header {
 	}
 	li {
 		display: inline-block;
-		padding: 10px
+	    padding: 0 30px 0 0;
+	    font-size: 20px;
+	    margin: 0;
+	    line-height: 0px;
 	}
+}
+
+#results {
+	text-align: center;
 }
 
 //Hero Image
 .hero {
+	    text-align: center;
 
 }
 img.logo {
@@ -190,9 +255,22 @@ img.logo {
 		font-weight: 400;
 	}
 }
+
+.buttoncontainer {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0 100px 0;
+}
+
+
+input:focus {
+    border-style: solid;
+    border-color: $pink;
+}
+
 input.keywords, .location {
 	background: rgba(255, 255, 255, 0.25); 
-	border-radius: 4px;
+	border-radius: 40px;
 	border-style: none;
 	color: white;
 	font-family: Montserrat-Regular;
@@ -201,13 +279,18 @@ input.keywords, .location {
 	line-height: 18px;
 	padding: 15px;
 	margin: 0 20px 0 0;
+	padding: 15px 70px 15px 20px;
+    margin: 0 30px 0 0;
 }
 .subText {
 	@include fontSize(10);
 	color: white;
 	font-weight: 400;
 }
-button {
+
+
+
+button, .btn {
 	background: $pink;
 	border-radius: 40px;
 	border-style: none;
@@ -219,6 +302,12 @@ button {
 	color: #FFFFFF;
 	letter-spacing: 2px;
 	line-height: 13px;
+    padding: 15px 80px;
+    margin: 20px;
+}
+
+.btn {
+	margin: 50px 0 60px 0;
 }
 
 //Main Section
@@ -227,7 +316,6 @@ main {
 }
 .intro {
 	padding: 0;
-	margin: 0;
 }
 .counter {
 	@include fontSize(14);
@@ -250,23 +338,31 @@ article {
 		margin: 0;
 	}
 }
+
+
 header.lime {
 	background: $lime;
 	border-radius: 4px 4px 0 0;
+	min-height: 150px;
+    padding: 0 10px 0 10px;
 }
 header.pink {
 	background: $pink;
 	border-radius: 4px 4px 0 0;
+	min-height: 150px;
+    padding: 0 10px 0 10px;
 }
 header.slate {
 	background: $slate;
 	border-radius: 4px 4px 0 0;
+	min-height: 150px;
+    padding: 0 10px 0 10px;
 }
 p.description {
 	font-family: DroidSerif;
 	@include fontSize(14);
 	color: $drkgrey;
-	line-height: 19px;
+    line-height: 21px;
 	padding: 20px;
 	margin: 0;
 }
@@ -282,6 +378,34 @@ article a {
 }
 article a:hover {
 	color: $pink;
+}
+.moreinfo {
+	 position: absolute;
+    bottom: 0;
+    right: 3%;
+    text-align: center;
+}
+
+.footerText p{
+	margin: 25px;
+	@include fontSize(12);
+	color: white;
+	opacity: 0.5;
+	font-family: PTSerif-Regular;
+	line-height: 16px;
+}
+
+.mainFooter{
+	background: $drkgrey;
+	margin: 0;
+	padding: 100px;
+	text-align: center;
+
+}
+
+.top {
+	text-decoration: none;
+	color: white;
 }
 
 /* Then we use media queries for targeting other resolutions */
