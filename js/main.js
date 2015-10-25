@@ -50,6 +50,42 @@ sponsored: false
 state: "ON"
 url: "http://ca.indeed.com/viewjob?jk */
 
+myApp.getLocation = function(){
+	if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(position){
+			myApp.userLocation = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+			
+			myApp.getCity(myApp.userLocation);
+		});	
+	} else {
+		alert("Geolocation is not supported by your browser");
+	}
+};
+myApp.getCity = function(coordinates){
+		$.ajax({
+			url: "http://geocoder.ca/?",
+			method: 'GET',
+			dataType: 'jsonp',
+			data: {
+				moreinfo: "1",
+				reverse: "Reverse+GeoCode",
+				jsonp: '1',
+				callback:'test',
+				latt: coordinates.latitude,
+				longt: coordinates.longitude
+			}
+
+	}).then(function(reverseGeocodingResult) {
+
+		myApp.userLocation.city = reverseGeocodingResult.city;
+		myApp.userLocation.province = reverseGeocodingResult.prov;
+		myApp.userLocation.postalCode = reverseGeocodingResult.postal;
+
+		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
+		// $('.location').val(myApp.userLocation.postalCode)
+	});
+};
+
 myApp.searchListener = function(){
   $("form.mainForm").on("submit", function(e) {
   		e.preventDefault();
@@ -57,8 +93,10 @@ myApp.searchListener = function(){
   		myApp.location = $('.location').val();
   		if( myApp.keywords.length >= 2 && myApp.location.length >= 2){
 	  		$('.hidden').removeClass('show').addClass('hide');	
+
 	  		// myApp.resultsCount = 0; //reset the counter
 	  		myApp.getUserInput(myApp.displayCount);
+
   		} else {
   			console.log('poop');
   			$('.hidden').removeClass('hide').addClass('show');
@@ -67,6 +105,7 @@ myApp.searchListener = function(){
 };
 
 // Create a method to .ajax call Indeed jobs
+
 myApp.getUserInput = function(startCnt){
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
@@ -89,12 +128,14 @@ myApp.getUserInput = function(startCnt){
 	            // jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
 
 	            // */
+
 	            // start: myApp.resultsCount,//Results start at this number, beginning with 0. Default is 0.
 
-
 	            limit: 9, // Max num of results returned per query : Default is 10, max 25
+
 	            start: startCnt,//Results start at this number, beginning with 0. Default is 0.
 	            // start: 0, //global variable - chunks of 9, make it DYNAMIC
+
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
 	            filter: 1, // Filter duplicate job results. 0 turns off filter. Default is 1.
@@ -112,12 +153,16 @@ myApp.getUserInput = function(startCnt){
 	        }
 	    } // end data
 	}).then(function(res) { // promise
+
 		//myApp.ajaxResults = res; //save our results in a global variable to access later
 		//console.log(myApp.ajaxResults);
 
 		//myApp.jobSearchResults = res.results; //array of 25 job listings
 		//console.log(myApp.jobSearchResults);
 
+		// $('span.start').text(myApp.ajaxResults.start);
+		// $('span.end').text(myApp.ajaxResults.end);
+		// $('span.totalResults').text(myApp.ajaxResults.totalResults);
 
 		// Increment our global counter by 9 everytime we get results
 		myApp.displayCount += 9;
@@ -129,8 +174,6 @@ myApp.getUserInput = function(startCnt){
 		if ($(".btnMore").length === 0) {
 			myApp.loadJobsBtn();
 		}
-
-		
 		
 // myApp.jobSearchResults.showing.start = res.results.start;
 // myApp.jobSearchResults.showing.end = res.results.end;
@@ -143,6 +186,10 @@ myApp.getUserInput = function(startCnt){
 		// myApp.counter(); //should the counter method be called here?
 
 	});
+
+$('div.toTop').addClass('show').removeClass('hide');
+// $('div.toTop').css('visibility', 'visible');
+
 }; // end myApp.init
 
 myApp.showNumJobs = function(start, end, total) {
@@ -212,6 +259,10 @@ myApp.loadMore = function(){
 
 //create an array of article elements
 myApp.createJobArticles = function(resultsArray){
+
+console.log("createJobArticles");
+console.log(myApp.count);
+
 	var objectArray = [];
 	highlights = ["lime", "pink", "slate"];
 	highlightIndex = 0;
@@ -267,7 +318,7 @@ myApp.init = function(){
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();
-	// $(".keywords").val("Javascript");
+	$(".keywords").val("Javascript");
 	// $(".location").val("Toronto");	
 });
 
@@ -276,40 +327,3 @@ $('a.top').click(function () {
   $(document.body).animate({scrollTop: 0}, 800);
   return false;
 });
-
-myApp.getLocation = function(){
-	if(navigator.geolocation){
-		navigator.geolocation.getCurrentPosition(function(position){
-			myApp.userLocation = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-			
-			myApp.getCity(myApp.userLocation);
-		});	
-	} else {
-		alert("Geolocation is not supported by your browser");
-	}
-};
-myApp.getCity = function(coordinates){
-		$.ajax({
-			url: "http://geocoder.ca/?",
-			method: 'GET',
-			dataType: 'jsonp',
-			data: {
-				moreinfo: "1",
-				reverse: "Reverse+GeoCode",
-				jsonp: '1',
-				callback:'test',
-				latt: coordinates.latitude,
-				longt: coordinates.longitude
-			}
-
-	}).then(function(reverseGeocodingResult) {
-
-		myApp.userLocation.city = reverseGeocodingResult.city;
-		myApp.userLocation.province = reverseGeocodingResult.prov;
-		myApp.userLocation.postalCode = reverseGeocodingResult.postal;
-
-		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
-		// $('.location').val(myApp.userLocation.postalCode)
-
-	});
-};
