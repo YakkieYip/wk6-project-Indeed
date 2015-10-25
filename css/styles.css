@@ -200,9 +200,10 @@ h3 {
   letter-spacing: 2.5px;
   line-height: 22px;
   text-transform: uppercase;
-  text-align: center;
-  margin: 0;
-  padding: 10px 0; }
+  /* text-align: center; */
+  /* margin: 0; */
+  padding: 10px 0;
+  vertical-align: middle; }
 
 h4 {
   font-size: 10px;
@@ -262,6 +263,12 @@ header {
     display: inline-block;
     padding: 10px; }
 
+#results {
+  text-align: center; }
+
+.hero {
+  text-align: center; }
+
 img.logo {
   max-width: 100%; }
 
@@ -303,6 +310,10 @@ img.logo {
     color: white;
     font-weight: 400; }
 
+.buttoncontainer {
+  width: 100%;
+  text-align: center; }
+
 input.keywords, .location {
   background: rgba(255, 255, 255, 0.25);
   border-radius: 4px;
@@ -314,7 +325,9 @@ input.keywords, .location {
   letter-spacing: 0px;
   line-height: 18px;
   padding: 15px;
-  margin: 0 20px 0 0; }
+  margin: 0 20px 0 0;
+  padding: 15px 60px 15px 20px;
+  margin: 0 30px 0 0; }
 
 .subText {
   font-size: 10px;
@@ -322,7 +335,7 @@ input.keywords, .location {
   color: white;
   font-weight: 400; }
 
-button {
+button, .btn {
   background: #F99D88;
   border-radius: 40px;
   border-style: none;
@@ -334,7 +347,9 @@ button {
   font-weight: 700;
   color: #FFFFFF;
   letter-spacing: 2px;
-  line-height: 13px; }
+  line-height: 13px;
+  padding: 15px 80px;
+  margin: 20px; }
 
 main {
   background: #F4F4F4; }
@@ -367,15 +382,21 @@ article {
 
 header.lime {
   background: #EFFF9B;
-  border-radius: 4px 4px 0 0; }
+  border-radius: 4px 4px 0 0;
+  min-height: 150px;
+  padding: 0 10px 0 10px; }
 
 header.pink {
   background: #F99D88;
-  border-radius: 4px 4px 0 0; }
+  border-radius: 4px 4px 0 0;
+  min-height: 150px;
+  padding: 0 10px 0 10px; }
 
 header.slate {
   background: #A7B8B8;
-  border-radius: 4px 4px 0 0; }
+  border-radius: 4px 4px 0 0;
+  min-height: 150px;
+  padding: 0 10px 0 10px; }
 
 p.description {
   font-family: DroidSerif;
