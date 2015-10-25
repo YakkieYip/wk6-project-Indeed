@@ -1,10 +1,9 @@
 // Create our namespace / empty object
 var myApp = {};
 
-myApp.resultsCount = 0; //increments by 25
 myApp.displayCount = 0; //increments by 9
 myApp.pageCount = 0; // increments by 1 at the same time as displaycount increments
-myApp.count = 0;
+myApp.resultsCount = 0;
 // Insert API key name of '.apiKey' into myApp {} and store API key
 myApp.jyipKey = '886387905641973'; // insert personal API key
 myApp.userLocation;
@@ -41,7 +40,7 @@ formattedLocationFull: "Toronto, ON"
 formattedRelativeTime: "2 hours ago"
 indeedApply: false
 jobkey: "4fe1e73045932fd8"
-jobtitle: "Application Developer"
+jobTitle: "Application Developer"
 latitude: 43.697803
 longitude: -79.41209
 onmousedown: "indeed_clk(this, '18');"
@@ -58,7 +57,7 @@ myApp.searchListener = function(){
   		myApp.location = $('.location').val();
   		if( myApp.keywords.length >= 2 && myApp.location.length >= 2){
 	  		$('.hidden').removeClass('show').addClass('hide');	
-	  		myApp.count = 0; //reset the counter
+	  		// myApp.resultsCount = 0; //reset the counter
 	  		myApp.getUserInput();
   		} else {
   			console.log('poop');
@@ -86,18 +85,16 @@ myApp.getUserInput = function(){
 
 	            /* These could be left default/we didn't need them?:
 	            st: Site type. To show only job board jobs, use "jobsite". For jobs from direct employer websites use "employer".
-	            jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary". */
 
 	            // jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
 
-	            
 	            // */
-	            start: myApp.resultscount,//Results start at this number, beginning with 0. Default is 0.
+	            // start: myApp.resultsCount,//Results start at this number, beginning with 0. Default is 0.
 
-	            start: myApp.count,//Results start at this number, beginning with 0. Default is 0.
 
-	            limit: 25, // Max num of results returned per query : Default is 10, max 25
-	            start: 25,
+	            limit: 9, // Max num of results returned per query : Default is 10, max 25
+	            start: myApp.resultsCount,//Results start at this number, beginning with 0. Default is 0.
+	            // start: 0, //global variable - chunks of 9, make it DYNAMIC
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
 	            filter: 1, // Filter duplicate job results. 0 turns off filter. Default is 1.
@@ -108,12 +105,10 @@ myApp.getUserInput = function(){
 	            chnl:	// Channel Name: Group API requests to a specific channel
 	            userip:	// The IP number of the end-user to whom the job results will be displayed. This field is required.
 	            useragent: // The User-Agent (browser) of the end-user to whom the job results will be displayed. Can be obtained from "User-Agent" HTTP request header from the end-user. This field is required.
-	            
 
 	            NOTE: 'formattedLocation:' and 'formattedLocationFull: will often be IDENTICAL. The exact values differ based on country and the data we have available.
 	            radius is optional; it will only be included when appropriate.
 	            /* Note that the ordering of response fields is not guaranteed */
-
 	        }
 	    } // end data
 	}).then(function(res) { // promise
@@ -123,23 +118,52 @@ myApp.getUserInput = function(){
 		myApp.jobSearchResults = res.results; //array of 25 job listings
 		console.log(myApp.jobSearchResults);
 
+		$('span.start').text(myApp.ajaxResults.start);
+		$('span.end').text(myApp.ajaxResults.end);
+		$('span.totalResults').text(myApp.ajaxResults.totalResults);
+		
 // myApp.jobSearchResults.showing.start = res.results.start;
 // myApp.jobSearchResults.showing.end = res.results.end;
 // myApp.jobSearchResults.showing.totalResults = res.results.totalResults;
 // console.log(myApp.jobSearchResults.showing.start);
 // console.log(myApp.jobSearchResults.showing.end);
 // console.log(myApp.jobSearchResults.showing.totalResults);
-
-
-		myApp.count += res.results.length; //set a counter variable for page loading logic
+		
+		myApp.resultsCount += res.results.length; //set a counter variable for page loading logic
+		// myApp.counter(); //should the counter method be called here?
 
 		var allArticleObjects = myApp.createJobArticles(myApp.jobSearchResults);
 		$('.container').empty();
 		$.each(allArticleObjects, function(index, value){
 			$('.container').append(value);
+		// myApp.counter();
 		});
 	});
 }; // end myApp.init
+
+myApp.loadListener = function(){
+	$('.loadMore').on('submit', function(e){
+		e.preventDefault();
+		
+	});
+};
+
+// myApp.counter = function(){
+// 	$('form.loadMore').on('submit', function(e){
+// 		e.preventDefault();
+// 		$('span.start').text(myApp.ajaxResults.start);
+// 		$('span.end').text(myApp.ajaxResults.end);
+// 		$('span.totalResults').text(myApp.ajaxResults.totalResults);
+// 	});
+// };
+
+// load more button
+
+// take everything i did to make the call, append it to the new div
+
+// $('.load').removeClass('show').addClass('hide');
+// $('.load').removeClass('hide').addClass('show');
+
 
 //create an array of article elements
 myApp.createJobArticles = function(resultsArray){
@@ -153,16 +177,16 @@ myApp.createJobArticles = function(resultsArray){
 
 //create the html of one article element
 myApp.createJobArticle = function(job){
-	var htmlText = '';
+	// var htmlText = '';
 	var $article = $('<article>').addClass('equalHM eq');
 	//header element
 	var $header = $('<header>').addClass('lime');
 	var $howRecent = $('<h4>').text(job.formattedRelativeTime);
-	var $jobtitle = $('<h3>').text(job.jobtitle);
-	$header.append($howRecent, $jobtitle);
+	var $jobTitle = $('<h3>').text(job.jobtitle);
+	$header.append($howRecent, $jobTitle);
 	//body
-	var $description = $('<p>').addClass('description').html(job.snippet);
-	var $link = $('<a>').attr('href', job.url).text('Learn More');
+	var $description = $('<p>').addClass('description').html(job.snippet).append($('<a>').attr('href', job.url).text(' Learn More'));
+	// var $link = 
 	//footer
 	var $footer = $('<footer>').addClass('moreInfo');
 	var $companyInfo = $('<h5>').text(job.company);
@@ -170,14 +194,16 @@ myApp.createJobArticle = function(job){
 	$footer.append($companyInfo, $cityProv);
 
 	// assemble all variables into one article element
-	$article.append($header, $description, $link, $footer);
+	$article.append($header, $description, $footer);
 	return $article;
 };
+
 
 //initialize Listener
 myApp.init = function(){
 	myApp.getLocation();
 	myApp.searchListener();
+	myApp.loadListener();
 };
 
 // On document ready, call initialize method.
@@ -226,7 +252,6 @@ myApp.getCity = function(coordinates){
 
 		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
 		// $('.location').val(myApp.userLocation.postalCode)
-	
-	myApp.searchListener();
+
 	});
 };

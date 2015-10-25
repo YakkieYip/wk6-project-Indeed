@@ -11,50 +11,6 @@
 	<body>
 	
 <!-- Header Section -->
-<<<<<<< HEAD
-<header>
-	<div class="topNav wrapper">
-		<div class="hamburger topWrap"><i class="fa fa-bars"></i></div>
-		<div class="social topWrap">
-			<ul>
-				<li><i class="fa fa-facebook"></i></li>
-				<li><i class="fa fa-twitter"></i></li>
-				<li><i class="fa fa-instagram"></i></li>
-			</ul>
-		</div>
-	</div>
-	<div class="hero wrapper">
-		<img class="logo" src="images/logo.svg" onerror="this.onerror=null; this.src='image.png'">
-		<h1>Do you love your job?</h1>
-		<p class="subText">Stop wasting time and find your dream job!</p>
-	</div>
-	<!-- Hidden div to prompt user to type in both input fields -->
-	<div class="hidden hide">
-		<p>Please type in both fields.</p>
-	</div>
-
-	<form class="mainForm wrapper">
-	<div class="field1 wrapper">
-		<input class="keywords" type="text" name="keywords" placeholder="ie: Javascript Developer">
-		<p class="instructions">job title, keywords or company name</p>
-	</div>
-	<div class="field2 wrapper">
-		<input class="location" type="text" name="location" placeholder="My Current Location"><i class="fa fa-map-marker"></i>
-		<p class="instructions">city or province</p>
-	</div>
-<<<<<<< HEAD
-</form>
-<div class="buttoncontainter">
-		<button class="btn search">Hook me up</button>
-=======
-	<div class="buttoncontainer">
-	<input type="submit" value="Hook me up" class="btn search">
->>>>>>> ee56991352a4ff7a23f582cabc2724931347b833
-		<!-- <input type="submit" value="Hook me up"> -->
-	</div>
-</form>
-</header>
-=======
 		<header>
 			<div class="topNav wrapper">
 				<div class="hamburger topWrap"><i class="fa fa-bars"></i></div>
@@ -87,18 +43,25 @@
 					<p class="instructions">city or province</p>
 				</div>
 				<div class="buttoncontainer">
-				<input type="submit" value="Hook me up" class="btn search">
+					<input type="submit" value="Hook me up" class="btn search">
 					<!-- <input type="submit" value="Hook me up"> -->
 				</div>
 			</form>
 		</header>
->>>>>>> 8bcf2d9ffd081056d4cda27c67042805753add2e
+
+		<form class="loadMore wrapper">
+			<div class="buttoncontainer">
+				<input type="submit" value="Show More" class="btn load">
+			</div>
+		</form>
 
 <!-- Main Section + Results -->
 		<main>
 			<div class="intro wrapper">
 				<h2>We found the following jobs for you...</h2>
-				<div class="counter">Showing xx - xx of xxx new opportunities</div>
+				<div class="counter">
+		           <p>Showing <span class="start">...</span> - <span class="end">...</span> of <span class="totalResults">...</span> new opportunities</p>
+	       	</div>
 			</div>
 
 			<div class="container wrapper equalHMWrap">	
@@ -219,7 +182,11 @@
 		</main>
 
 <!-- Footer Section -->
-		<footer></footer>
+		<footer>
+	<!-- Hidden 'Load More' button that appears when the first 9 results are on the page-->
+			
+
+		</footer>
 
 <!-- Back to top icon -->
 		<a class="top" href="#">Back to top</a>
@@ -227,6 +194,7 @@
 <!-- Load Jquery Library  -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Load in JS file  -->
+		<script src="js/underscore.js"></script>
 		<script src="js/main.js"></script>
 
 		<script type="text/javascript">
