@@ -43,17 +43,25 @@
 					<p class="instructions">city or province</p>
 				</div>
 				<div class="buttoncontainer">
-				<input type="submit" value="Hook me up" class="btn search">
+					<input type="submit" value="Hook me up" class="btn search">
 					<!-- <input type="submit" value="Hook me up"> -->
 				</div>
 			</form>
 		</header>
 
+		<form class="loadMore wrapper">
+			<div class="buttoncontainer">
+				<input type="submit" value="Show More" class="btn load">
+			</div>
+		</form>
+
 <!-- Main Section + Results -->
 		<main>
 			<div class="intro wrapper">
 				<h2>We found the following jobs for you...</h2>
-				<div class="counter">Showing xx - xx of xxx new opportunities</div>
+				<div class="counter">
+		           <p>Showing <span class="start">...</span> - <span class="end">...</span> of <span class="totalResults">...</span> new opportunities</p>
+	       	</div>
 			</div>
 
 			<div class="container wrapper equalHMWrap">	
@@ -174,7 +182,11 @@
 		</main>
 
 <!-- Footer Section -->
-		<footer></footer>
+		<footer>
+	<!-- Hidden 'Load More' button that appears when the first 9 results are on the page-->
+			
+
+		</footer>
 
 <!-- Back to top icon -->
 		<a class="top" href="#">Back to top</a>
@@ -182,6 +194,7 @@
 <!-- Load Jquery Library  -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Load in JS file  -->
+		<script src="js/underscore.js"></script>
 		<script src="js/main.js"></script>
 
 		<script type="text/javascript">
