@@ -43,10 +43,10 @@ $drkgrey: #444444;
 	color: white;
 	display: none;
 }
-// .show {
-// 	color: white;
-// 	display: block;
-// }
+.show {
+	color: white;
+	display: block;
+}
 
 input:required
 {
@@ -400,7 +400,7 @@ article a:hover {
 	margin: 0;
 	padding: 100px;
 	text-align: center;
-
+	position: relative;
 }
 
 .top {
@@ -408,10 +408,32 @@ article a:hover {
 	color: white;
 }
 
+div.toTop {
+	position: absolute;
+	right: 25px;
+	top: -110px;
+	i:hover {
+		color: $slate;
+	}
+	i {
+		color: #444444;
+		transition: color 1s;
+	}
+}
+div.logo svg {
+	fill: #fff;
+	width: 75px;
+}
+
 /* Then we use media queries for targeting other resolutions */
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
-
+	h1 {
+		@include fontSize(72);
+	}
+	h2 {
+		@include fontSize(47);
+	}
 }
 /* Landscape phone to portrait tablet */
 @media only screen and (max-width: 767px) {
@@ -420,8 +442,25 @@ article a:hover {
 		* to improve page load speed on mobile internet connections */
 		background-image: url(../images/background-photo-mobile-devices.jpg);
 	}
+	h1 {
+		@include fontSize(62);
+	}
+	h2 {
+		@include fontSize(42);
+	}
+	.equalHM {
+		width: calc(50% - 20px);
+	}
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
-
+	.equalHM {
+		width: calc(100% - 20px);
+	}
+	h1 {
+		@include fontSize(42);
+	}
+	h2 {
+		@include fontSize(22);
+	}
 }

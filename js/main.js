@@ -50,6 +50,42 @@ sponsored: false
 state: "ON"
 url: "http://ca.indeed.com/viewjob?jk */
 
+myApp.getLocation = function(){
+	if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(position){
+			myApp.userLocation = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+			
+			myApp.getCity(myApp.userLocation);
+		});	
+	} else {
+		alert("Geolocation is not supported by your browser");
+	}
+};
+myApp.getCity = function(coordinates){
+		$.ajax({
+			url: "http://geocoder.ca/?",
+			method: 'GET',
+			dataType: 'jsonp',
+			data: {
+				moreinfo: "1",
+				reverse: "Reverse+GeoCode",
+				jsonp: '1',
+				callback:'test',
+				latt: coordinates.latitude,
+				longt: coordinates.longitude
+			}
+
+	}).then(function(reverseGeocodingResult) {
+
+		myApp.userLocation.city = reverseGeocodingResult.city;
+		myApp.userLocation.province = reverseGeocodingResult.prov;
+		myApp.userLocation.postalCode = reverseGeocodingResult.postal;
+
+		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
+		// $('.location').val(myApp.userLocation.postalCode)
+	});
+};
+
 myApp.searchListener = function(){
   $("form.mainForm").on("submit", function(e) {
   		e.preventDefault();
@@ -71,7 +107,6 @@ myApp.searchListener = function(){
 // Create a method to .ajax call Indeed jobs
 
 myApp.getUserInput = function(startCnt){
-
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
 	    dataType: 'json',
@@ -139,8 +174,6 @@ myApp.getUserInput = function(startCnt){
 		if ($(".btnMore").length === 0) {
 			myApp.loadJobsBtn();
 		}
-
-		
 		
 // myApp.jobSearchResults.showing.start = res.results.start;
 // myApp.jobSearchResults.showing.end = res.results.end;
@@ -153,6 +186,10 @@ myApp.getUserInput = function(startCnt){
 		// myApp.counter(); //should the counter method be called here?
 
 	});
+
+$('div.toTop').addClass('show').removeClass('hide');
+// $('div.toTop').css('visibility', 'visible');
+
 }; // end myApp.init
 
 myApp.showNumJobs = function(start, end, total) {
@@ -290,39 +327,3 @@ $('a.top').click(function () {
   $(document.body).animate({scrollTop: 0}, 800);
   return false;
 });
-
-myApp.getLocation = function(){
-	if(navigator.geolocation){
-		navigator.geolocation.getCurrentPosition(function(position){
-			myApp.userLocation = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-			
-			myApp.getCity(myApp.userLocation);
-		});	
-	} else {
-		alert("Geolocation is not supported by your browser");
-	}
-};
-myApp.getCity = function(coordinates){
-		$.ajax({
-			url: "http://geocoder.ca/?",
-			method: 'GET',
-			dataType: 'jsonp',
-			data: {
-				moreinfo: "1",
-				reverse: "Reverse+GeoCode",
-				jsonp: '1',
-				callback:'test',
-				latt: coordinates.latitude,
-				longt: coordinates.longitude
-			}
-
-	}).then(function(reverseGeocodingResult) {
-
-		myApp.userLocation.city = reverseGeocodingResult.city;
-		myApp.userLocation.province = reverseGeocodingResult.prov;
-		myApp.userLocation.postalCode = reverseGeocodingResult.postal;
-
-		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
-		// $('.location').val(myApp.userLocation.postalCode)
-	});
-};
