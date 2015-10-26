@@ -306,6 +306,12 @@ header {
   color: white;
   font-size: 24px; }
 
+i.fa {
+  transition: color 1s; }
+
+i.fa:hover {
+  color: #EFFF9B; }
+
 .social {
   color: white; }
   .social ul {
@@ -411,7 +417,13 @@ button, .btn {
   margin: 20px; }
 
 .btn {
-  margin: 50px 0 60px 0; }
+  margin: 50px 0 60px 0;
+  transition: background 1s, color 1s; }
+
+input.btn:hover, button.btn:hover {
+  background: #EFFF9B;
+  color: #A7B8B8;
+  border: none; }
 
 main {
   background: #F4F4F4; }
@@ -504,8 +516,7 @@ article a:hover {
   position: relative; }
 
 .top {
-  text-decoration: none;
-  color: white; }
+  text-decoration: none; }
 
 div.toTop {
   position: absolute;
