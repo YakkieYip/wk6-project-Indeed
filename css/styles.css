@@ -158,11 +158,28 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   color: white;
   display: none; }
 
+.show {
+  color: white;
+  display: block; }
+
 input:required {
   border-color: red !important; }
 
 input:required + label {
   color: red; }
+
+span.nested {
+  position: relative; }
+
+span.nested img {
+  max-width: 25%;
+  position: absolute;
+  right: 25px;
+  bottom: -30px;
+  transition: 2s; }
+
+span.nested input[type=text]:focus + img.gps {
+  display: none; }
 
 label {
   display: block; }
@@ -456,7 +473,6 @@ header.slate {
   padding: 0 10px 0 10px; }
 
 p.description {
-  font-family: DroidSerif;
   font-size: 14px;
   font-size: 1.4rem;
   color: #444444;
