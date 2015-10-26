@@ -29,9 +29,6 @@
 			</div>
 
 <!-- Hidden div to prompt user to type in both input fields -->
-			<div class="hidden hide">
-				<p>Please fill out both fields</p>
-			</div>
 
 			<form class="mainForm wrapper">
 				<div class="field1 wrapper">
@@ -39,7 +36,11 @@
 					<p class="instructions">job title, keywords or company name</p>
 				</div>
 				<div class="field2 wrapper">
-					<input class="location" type="text" name="location" placeholder="My Current Location"><i class="fa fa-map-marker"></i>
+					<span class="nested">
+						<input class="location" type="text" name="location" placeholder="My Current Location" required>
+						<!-- <i class="fa fa-map-marker"></i> --> 
+						<img src="images/gps-arrow-fcFrankChung.svg" alt="A pink location arrow" class="gps">
+					</span>
 					<p class="instructions">city or province</p>
 				</div>
 				<div class="buttoncontainer">
@@ -49,14 +50,25 @@
 			</form>
 		</header>
 
+		<!-- <form class="loadMore wrapper">
+			<div class="buttoncontainer">
+				<input type="submit" value="Show More" class="btn load">
+			</div>
+		</form> -->
+
 <!-- Main Section + Results -->
 		<main id="results">
 			<!--div class="intro wrapper">
 				<h2>We found the following jobs for you...</h2>
 				<div class="counter">
 		           <p>Showing <span class="start">...</span> - <span class="end">...</span> of <span class="totalResults">...</span> new opportunities</p>
+
+	       	</div>
+			</div>
+
 	       		</div>
 			</div -->
+
 
 			<div class="container wrapper equalHMWrap">	
 <!-- Lime containers -->
@@ -65,7 +77,9 @@
 		</main>
 
 <!-- Footer Section -->
+
 		<footer class="mainFooter" id="footer">
+
 
 <!-- Back to top icon -->
 			<div class="toTop hide">
