@@ -175,8 +175,7 @@ span.nested img {
   max-width: 25%;
   position: absolute;
   right: 25px;
-  bottom: -30px;
-  transition: 2s; }
+  bottom: -30px; }
 
 span.nested input[type=text]:focus + img.gps {
   display: none; }
@@ -358,12 +357,13 @@ img.logo {
   margin: 0;
   padding: 0; }
   .field1 p.instructions {
-    font-size: 12px;
-    font-size: 1.2rem;
+    font-size: 10px;
+    font-size: 1rem;
     font-family: 'Lato', sans-serif;
     color: #FFFFFF;
     letter-spacing: 0px;
-    line-height: 15px; }
+    line-height: 15px;
+    padding: 0 15px 0; }
 
 .field2 {
   -webkit-justify-content: center;
@@ -372,12 +372,13 @@ img.logo {
   margin: 0;
   padding: 0; }
   .field2 p.instructions {
-    font-size: 12px;
-    font-size: 1.2rem;
+    font-size: 10px;
+    font-size: 1rem;
     font-family: 'Lato', sans-serif;
     color: #FFFFFF;
     letter-spacing: 0px;
-    line-height: 15px; }
+    line-height: 15px;
+    padding: 0 15px 0; }
 
 .buttoncontainer {
   width: 100%;
@@ -591,17 +592,29 @@ div.logo svg {
     font-size: 4.4rem; }
   h2 {
     font-size: 26px;
-    font-size: 2.6rem; } }
+    font-size: 2.6rem; }
+  p.subText {
+    font-size: 18px;
+    font-size: 1.8rem; } }
 
 /* Landscape phones and down */
 @media (max-width: 495px) {
   .equalHM {
     width: calc(100% - 20px); }
   h1 {
-    font-size: 32px;
-    font-size: 3.2rem; }
+    font-size: 34px;
+    font-size: 3.4rem; }
   h2 {
     font-size: 22px;
     font-size: 2.2rem; }
+  p.subText {
+    font-size: 16px;
+    font-size: 1.6rem; }
   .search {
-    margin: 0 0 40px 0; } }
+    margin: 0 0 40px 0; }
+  .field1 p.instructions {
+    font-size: 12px;
+    font-size: 1.2rem; }
+  .field2 p.instructions {
+    font-size: 12px;
+    font-size: 1.2rem; } }

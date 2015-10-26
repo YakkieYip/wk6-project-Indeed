@@ -66,7 +66,6 @@ span.nested img {
 	position: absolute;
 	right: 25px;
 	bottom: -30px;
-	transition: 2s;
 }
 
 span.nested input[type=text]:focus + img.gps {
@@ -272,11 +271,12 @@ img.logo {
 	// 	font-weight: 400;
 	// }
 		p.instructions {
-		@include fontSize(12);
+		@include fontSize(10);
 		font-family: 'Lato', sans-serif;
 		color: #FFFFFF;
 		letter-spacing: 0px;
-		line-height: 15px;	
+		line-height: 15px;
+		padding: 0 15px 0;	
 	}
 }
 
@@ -290,11 +290,12 @@ img.logo {
 	// 	font-weight: 400;
 	// }
 		p.instructions {
-		@include fontSize(12);
+		@include fontSize(10);
 		font-family: 'Lato', sans-serif;
 		color: #FFFFFF;
 		letter-spacing: 0px;
-		line-height: 15px;	
+		line-height: 15px;
+		padding: 0 15px 0;	
 	}
 }
 
@@ -539,6 +540,9 @@ div.logo svg {
 	h2 {
 		@include fontSize(26);
 	}
+	p.subText {
+		@include fontSize(18);
+	}
 }
 
 /* Landscape phones and down */
@@ -547,12 +551,21 @@ div.logo svg {
 		width: calc(100% - 20px);
 	}
 	h1 {
-		@include fontSize(32);
+		@include fontSize(34);
 	}
 	h2 {
 		@include fontSize(22);
 	}
+	p.subText {
+		@include fontSize(16);
+	}
 	.search {
 		margin: 0 0 40px 0;
+	}
+	.field1 p.instructions {
+		@include fontSize(12);
+	}
+	.field2 p.instructions {
+		@include fontSize(12);
 	}
 }

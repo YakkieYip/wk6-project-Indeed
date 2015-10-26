@@ -323,7 +323,7 @@ myApp.init = function(){
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();
-	$(".keywords").val("Javascript");
+	// $(".keywords").val("Javascript");
 	// $(".location").val("Toronto");	
 });
 
