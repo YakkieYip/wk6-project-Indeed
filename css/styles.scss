@@ -222,6 +222,12 @@ header {
 	color: white;
 	font-size: 24px;
 }
+i.fa {
+	transition: color 1s;
+}
+i.fa:hover {
+			color: $lime;
+		}
 .social {
 	color: white;
 	ul {
@@ -344,7 +350,14 @@ button, .btn {
 
 .btn {
 	margin: 50px 0 60px 0;
+	transition: background 1s, color 1s;
 }
+
+input.btn:hover, button.btn:hover {
+		background: $lime;
+		color: $slate;
+		border: none;
+    }
 
 //Main Section
 main {

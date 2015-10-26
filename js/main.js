@@ -197,6 +197,7 @@ myApp.showNumJobs = function(start, end, total) {
 myApp.loadJobsBtn = function() {
 	var buttonInput = $('<button type="button" onclick="myApp.loadMore()">').addClass('btn btnMore').text("Show More");
 	$('#results').append(buttonInput);
+	window.scrollBy(0,900);
 }
 
 myApp.createResults = function(jobResults) {
@@ -282,7 +283,10 @@ console.log(myApp.count);
 			}
 		}
 	});
-	return objectArray;	
+	if (myApp.displayCount > 9){
+		window.scrollBy(0,432);
+	}
+	return objectArray;
 };
 
 //create the html of one article element
