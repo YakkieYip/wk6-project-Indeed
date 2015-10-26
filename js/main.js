@@ -62,7 +62,6 @@ myApp.getCity = function(coordinates){
 
 		$('.location').val(myApp.userLocation.city + ", " + myApp.userLocation.province)
 		// $('.location').val(myApp.userLocation.postalCode)
-
 	});
 };
 
@@ -73,6 +72,7 @@ myApp.searchListener = function(){
   		myApp.location = $('.location').val();
   		if( myApp.keywords.length >= 2 && myApp.location.length >= 2){
 	  		$('.hidden').removeClass('show').addClass('hide');	
+
 	  		// myApp.resultsCount = 0; //reset the counter
 
 	  		myApp.getUserInput(myApp.displayCount);
@@ -85,6 +85,7 @@ myApp.searchListener = function(){
 };
 
 // Create a method to .ajax call Indeed jobs
+
 myApp.getUserInput = function(startCnt){
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
@@ -107,6 +108,7 @@ myApp.getUserInput = function(startCnt){
 	            // jt: Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
 
 	            // */
+
 	            // start: myApp.resultsCount,//Results start at this number, beginning with 0. Default is 0.
 	            // start: 0, //global variable - chunks of 9, make it DYNAMIC
 
@@ -131,6 +133,7 @@ myApp.getUserInput = function(startCnt){
 	        }
 	    } // end data
 	}).then(function(res) { // promise
+
 		//myApp.ajaxResults = res; //save our results in a global variable to access later
 		//console.log(myApp.ajaxResults);
 
@@ -163,7 +166,10 @@ myApp.getUserInput = function(startCnt){
 		// myApp.counter(); //should the counter method be called here?
 
 	});
-}; // end myApp.getUserInput
+
+$('div.toTop').addClass('show').removeClass('hide');
+// $('div.toTop').css('visibility', 'visible');
+}; // end myApp.init
 
 myApp.showNumJobs = function(start, end, total) {
 	// Only create the results element upon first searching for a job
@@ -254,6 +260,10 @@ myApp.loadListener = function(){
 
 //create an array of article elements
 myApp.createJobArticles = function(resultsArray){
+
+console.log("createJobArticles");
+console.log(myApp.count);
+
 	var objectArray = [];
 	highlights = ["lime", "pink", "slate"];
 	highlightIndex = 0;
@@ -309,7 +319,7 @@ myApp.init = function(){
 // On document ready, call initialize method.
 $(function() {
 	myApp.init();
-	// $(".keywords").val("Javascript");
+	$(".keywords").val("Javascript");
 	// $(".location").val("Toronto");	
 });
 

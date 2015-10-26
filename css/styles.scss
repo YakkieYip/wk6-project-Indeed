@@ -27,9 +27,9 @@ $drkgrey: #444444;
 	justify-content: space-between;
 	flex-wrap: wrap;
 }
-.topWrap {
+// .topWrap {
 	
-}
+// }
 .equalHM {
 	width: calc(33% - 20px);
 }
@@ -260,20 +260,35 @@ img.logo {
 	justify-content: center;
 	margin: 0;
 	padding: 0;
-	p {
-		@include fontSize(10);
-		color: white;
-		font-weight: 400;
+	// p {
+	// 	@include fontSize(10);
+	// 	color: white;
+	// 	font-weight: 400;
+	// }
+		p.instructions {
+		@include fontSize(12);
+		font-family: 'Lato', sans-serif;
+		color: #FFFFFF;
+		letter-spacing: 0px;
+		line-height: 15px;	
 	}
 }
+
 .field2 {
 	justify-content: center;
 	margin: 0;
 	padding: 0;	
-	p {
-		@include fontSize(10);
-		color: white;
-		font-weight: 400;
+	// p {
+	// 	@include fontSize(10);
+	// 	color: white;
+	// 	font-weight: 400;
+	// }
+		p.instructions {
+		@include fontSize(12);
+		font-family: 'Lato', sans-serif;
+		color: #FFFFFF;
+		letter-spacing: 0px;
+		line-height: 15px;	
 	}
 }
 
@@ -420,12 +435,28 @@ article a:hover {
 	margin: 0;
 	padding: 100px;
 	text-align: center;
-
+	position: relative;
 }
 
 .top {
 	text-decoration: none;
-	color: white;
+}
+
+div.toTop {
+	position: absolute;
+	right: 25px;
+	top: -110px;
+	i:hover {
+		color: $slate;
+	}
+	i {
+		color: #444444;
+		transition: color 1s;
+	}
+}
+div.logo svg {
+	fill: #fff;
+	width: 75px;
 }
 
 /* Then we use media queries for targeting other resolutions */
@@ -433,12 +464,12 @@ article a:hover {
 // @media (min-width: 768px) and (max-width: 940px)
 // The above piece of code will only be applied when the width of your browser is greater or equal to 768px and less or equal to 940px
 @media (max-width: 940px) {
-	// body {
-	// 		background:red;
-	// 	}
-	// 	h2 {
-	// 		font-size:20px;
-	// 	}
+	h1 {
+		@include fontSize(72);
+	}
+	h2 {
+		@include fontSize(47);
+	}
 }
 /* Landscape phone to portrait tablet */
 @media only screen and (max-width: 767px) {
@@ -447,8 +478,68 @@ article a:hover {
 		* to improve page load speed on mobile internet connections */
 		background-image: url(../images/background-photo-mobile-devices.jpg);
 	}
+	h1 {
+		@include fontSize(62);
+	}
+	h2 {
+		@include fontSize(40);
+	}
+	.equalHM {
+		width: calc(50% - 20px);
+	}
 }
-/* Landscape phones and down */
-@media (max-width: 480px) {
 
+@media only screen and (max-width: 670px) {
+	h1 {
+		@include fontSize(56);
+	}
+	h2 {
+		@include fontSize(34);
+	}
+	// .buttoncontainer {
+	// 	padding: 25px 0 160px 0;
+	// }
+	// .search {
+	// 	margin: 10px 0 60px 0;
+	// }
+}
+
+@media only screen and (max-width: 614px) {
+	h1 {
+		@include fontSize(48);
+	}
+	h2 {
+		@include fontSize(30);
+	}
+}
+
+@media only screen and (max-width: 610px){
+	.search {
+		margin: 5px 0 40px 0;
+	}
+}
+
+@media only screen and (max-width: 535px) {
+	h1 {
+		@include fontSize(44);
+	}
+	h2 {
+		@include fontSize(26);
+	}
+}
+
+/* Landscape phones and down */
+@media (max-width: 495px) {
+	.equalHM {
+		width: calc(100% - 20px);
+	}
+	h1 {
+		@include fontSize(32);
+	}
+	h2 {
+		@include fontSize(22);
+	}
+	.search {
+		margin: 0 0 40px 0;
+	}
 }

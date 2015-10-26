@@ -359,11 +359,13 @@ img.logo {
           justify-content: center;
   margin: 0;
   padding: 0; }
-  .field1 p {
-    font-size: 10px;
-    font-size: 1rem;
-    color: white;
-    font-weight: 400; }
+  .field1 p.instructions {
+    font-size: 12px;
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    color: #FFFFFF;
+    letter-spacing: 0px;
+    line-height: 15px; }
 
 .field2 {
   -webkit-justify-content: center;
@@ -371,11 +373,13 @@ img.logo {
           justify-content: center;
   margin: 0;
   padding: 0; }
-  .field2 p {
-    font-size: 10px;
-    font-size: 1rem;
-    color: white;
-    font-weight: 400; }
+  .field2 p.instructions {
+    font-size: 12px;
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    color: #FFFFFF;
+    letter-spacing: 0px;
+    line-height: 15px; }
 
 .buttoncontainer {
   width: 100%;
@@ -512,19 +516,88 @@ article a:hover {
   background: #444444;
   margin: 0;
   padding: 100px;
-  text-align: center; }
+  text-align: center;
+  position: relative; }
 
 .top {
-  text-decoration: none;
-  color: white; }
+  text-decoration: none; }
+
+div.toTop {
+  position: absolute;
+  right: 25px;
+  top: -110px; }
+  div.toTop i:hover {
+    color: #A7B8B8; }
+  div.toTop i {
+    color: #444444;
+    transition: color 1s; }
+
+div.logo svg {
+  fill: #fff;
+  width: 75px; }
 
 /* Then we use media queries for targeting other resolutions */
 /* Portrait tablet and small desktops */
+@media (max-width: 940px) {
+  h1 {
+    font-size: 72px;
+    font-size: 7.2rem; }
+  h2 {
+    font-size: 47px;
+    font-size: 4.7rem; } }
+
 /* Landscape phone to portrait tablet */
 @media only screen and (max-width: 767px) {
   header {
     /* The file size of this background image is 93% smaller
 		* to improve page load speed on mobile internet connections */
-    background-image: url(../images/background-photo-mobile-devices.jpg); } }
+    background-image: url(../images/background-photo-mobile-devices.jpg); }
+  h1 {
+    font-size: 62px;
+    font-size: 6.2rem; }
+  h2 {
+    font-size: 40px;
+    font-size: 4rem; }
+  .equalHM {
+    width: calc(50% - 20px); } }
+
+@media only screen and (max-width: 670px) {
+  h1 {
+    font-size: 56px;
+    font-size: 5.6rem; }
+  h2 {
+    font-size: 34px;
+    font-size: 3.4rem; } }
+
+@media only screen and (max-width: 614px) {
+  h1 {
+    font-size: 48px;
+    font-size: 4.8rem; }
+  h2 {
+    font-size: 30px;
+    font-size: 3rem; } }
+
+@media only screen and (max-width: 610px) {
+  .search {
+    margin: 5px 0 40px 0; } }
+
+@media only screen and (max-width: 535px) {
+  h1 {
+    font-size: 44px;
+    font-size: 4.4rem; }
+  h2 {
+    font-size: 26px;
+    font-size: 2.6rem; } }
 
 /* Landscape phones and down */
+@media (max-width: 495px) {
+  .equalHM {
+    width: calc(100% - 20px); }
+  h1 {
+    font-size: 32px;
+    font-size: 3.2rem; }
+  h2 {
+    font-size: 22px;
+    font-size: 2.2rem; }
+  .search {
+    margin: 0 0 40px 0; } }
