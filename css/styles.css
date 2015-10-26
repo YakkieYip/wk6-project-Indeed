@@ -262,14 +262,6 @@ p.subText {
   color: #EFFF9B;
   line-height: 26px; }
 
-p.instructions {
-  font-size: 12px;
-  font-size: 1.2rem;
-  font-family: 'Lato', sans-serif;
-  color: #FFFFFF;
-  letter-spacing: 0px;
-  line-height: 15px; }
-
 .show {
   text-align: center; }
 

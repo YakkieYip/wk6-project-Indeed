@@ -159,13 +159,13 @@ p.subText {
 	line-height: 26px;
 }
 
-p.instructions {
-	@include fontSize(12);
-	font-family: 'Lato', sans-serif;
-	color: #FFFFFF;
-	letter-spacing: 0px;
-	line-height: 15px;	
-}
+// p.instructions {
+// 	@include fontSize(12);
+// 	font-family: 'Lato', sans-serif;
+// 	color: #FFFFFF;
+// 	letter-spacing: 0px;
+// 	line-height: 15px;	
+// }
 
 .show {
 	text-align: center;
