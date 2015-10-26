@@ -8,27 +8,6 @@ myApp.pageCount = 0; // increments by 1 at the same time as displaycount increme
 myApp.jyipKey = '886387905641973'; // insert personal API key
 myApp.userLocation;
 
-// Add event listener onto page, once clicked grab input field values by user
-// myApp.input1Listener = function(){
-// 	$('.keywords').on('change', function(){
-// 		var input1 = $(this).val();
-// 		if(input1 && input1.length >=2){
-// 			myApp.input2Listener();
-// 			return input1;
-// 		};	
-// 	});
-// };
-
-// myApp.input2Listener = function(){
-// 	$('.keywords').on('change', function(){
-// 		var input2 = $(this).val();
-// 		if(input2 && input2.length >=2){
-// 			myApp.searchListener();
-// 			return input2;
-// 		};	
-// 	});
-// };
-
 /* 0: Object
 city: "Toronto"
 company: "CaseWare"
@@ -95,6 +74,7 @@ myApp.searchListener = function(){
 	  		$('.hidden').removeClass('show').addClass('hide');	
 
 	  		// myApp.resultsCount = 0; //reset the counter
+
 	  		myApp.getUserInput(myApp.displayCount);
 
   		} else {
@@ -130,11 +110,11 @@ myApp.getUserInput = function(startCnt){
 	            // */
 
 	            // start: myApp.resultsCount,//Results start at this number, beginning with 0. Default is 0.
+	            // start: 0, //global variable - chunks of 9, make it DYNAMIC
 
 	            limit: 9, // Max num of results returned per query : Default is 10, max 25
 
 	            start: startCnt,//Results start at this number, beginning with 0. Default is 0.
-	            // start: 0, //global variable - chunks of 9, make it DYNAMIC
 
 	            fromage: 30, // Num of days back, ie: 30 = a month back, to search.
 	            highlight: 1, // Set 1 will bold terms in snippet that are also present in q. Default is 0.
@@ -189,7 +169,6 @@ myApp.getUserInput = function(startCnt){
 
 $('div.toTop').addClass('show').removeClass('hide');
 // $('div.toTop').css('visibility', 'visible');
-
 }; // end myApp.init
 
 myApp.showNumJobs = function(start, end, total) {
@@ -213,7 +192,6 @@ myApp.showNumJobs = function(start, end, total) {
 	} else {
 		$('span.end').text(end);
 	}
-
 }
 
 myApp.loadJobsBtn = function() {
@@ -258,6 +236,29 @@ myApp.loadMore = function(){
 // $('.load').removeClass('hide').addClass('show');
 
 
+myApp.loadListener = function(){
+	$('.loadMore').on('submit', function(e){
+		e.preventDefault();
+	});
+};
+
+// myApp.counter = function(){
+// 	$('form.loadMore').on('submit', function(e){
+// 		e.preventDefault();
+// 		$('span.start').text(myApp.ajaxResults.start);
+// 		$('span.end').text(myApp.ajaxResults.end);
+// 		$('span.totalResults').text(myApp.ajaxResults.totalResults);
+// 	});
+// };
+
+// load more button
+
+// take everything i did to make the call, append it to the new div
+
+// $('.load').removeClass('show').addClass('hide');
+// $('.load').removeClass('hide').addClass('show');
+
+
 //create an array of article elements
 myApp.createJobArticles = function(resultsArray){
 
@@ -282,13 +283,14 @@ console.log(myApp.count);
 			}
 		}
 	});
-	if(myApp.displayCount > 9){
+	if (myApp.displayCount > 9){
 		window.scrollBy(0,432);
 	}
-	return objectArray;	
+	return objectArray;
 };
 
 //create the html of one article element
+
 myApp.createJobArticle = function(job, highlightColor){
 	// var htmlText = '';
 	var $article = $('<article>').addClass('equalHM eq');
@@ -316,7 +318,6 @@ myApp.createJobArticle = function(job, highlightColor){
 myApp.init = function(){
 	myApp.getLocation();
 	myApp.searchListener();
-	//myApp.loadListener();
 };
 
 // On document ready, call initialize method.
@@ -331,3 +332,4 @@ $('a.top').click(function () {
   $(document.body).animate({scrollTop: 0}, 800);
   return false;
 });
+

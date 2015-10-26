@@ -168,6 +168,19 @@ input:required {
 input:required + label {
   color: red; }
 
+span.nested {
+  position: relative; }
+
+span.nested img {
+  max-width: 25%;
+  position: absolute;
+  right: 25px;
+  bottom: -30px;
+  transition: 2s; }
+
+span.nested input[type=text]:focus + img.gps {
+  display: none; }
+
 label {
   display: block; }
 
@@ -248,14 +261,6 @@ p.subText {
   padding: 0 0 50px 0;
   color: #EFFF9B;
   line-height: 26px; }
-
-p.instructions {
-  font-size: 12px;
-  font-size: 1.2rem;
-  font-family: 'Lato', sans-serif;
-  color: #FFFFFF;
-  letter-spacing: 0px;
-  line-height: 15px; }
 
 .show {
   text-align: center; }
@@ -352,11 +357,13 @@ img.logo {
           justify-content: center;
   margin: 0;
   padding: 0; }
-  .field1 p {
-    font-size: 10px;
-    font-size: 1rem;
-    color: white;
-    font-weight: 400; }
+  .field1 p.instructions {
+    font-size: 12px;
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    color: #FFFFFF;
+    letter-spacing: 0px;
+    line-height: 15px; }
 
 .field2 {
   -webkit-justify-content: center;
@@ -364,11 +371,13 @@ img.logo {
           justify-content: center;
   margin: 0;
   padding: 0; }
-  .field2 p {
-    font-size: 10px;
-    font-size: 1rem;
-    color: white;
-    font-weight: 400; }
+  .field2 p.instructions {
+    font-size: 12px;
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    color: #FFFFFF;
+    letter-spacing: 0px;
+    line-height: 15px; }
 
 .buttoncontainer {
   width: 100%;
@@ -472,7 +481,6 @@ header.slate {
   padding: 0 10px 0 10px; }
 
 p.description {
-  font-family: DroidSerif;
   font-size: 14px;
   font-size: 1.4rem;
   color: #444444;
@@ -552,18 +560,48 @@ div.logo svg {
     font-size: 62px;
     font-size: 6.2rem; }
   h2 {
-    font-size: 42px;
-    font-size: 4.2rem; }
+    font-size: 40px;
+    font-size: 4rem; }
   .equalHM {
     width: calc(50% - 20px); } }
 
+@media only screen and (max-width: 670px) {
+  h1 {
+    font-size: 56px;
+    font-size: 5.6rem; }
+  h2 {
+    font-size: 34px;
+    font-size: 3.4rem; } }
+
+@media only screen and (max-width: 614px) {
+  h1 {
+    font-size: 48px;
+    font-size: 4.8rem; }
+  h2 {
+    font-size: 30px;
+    font-size: 3rem; } }
+
+@media only screen and (max-width: 610px) {
+  .search {
+    margin: 5px 0 40px 0; } }
+
+@media only screen and (max-width: 535px) {
+  h1 {
+    font-size: 44px;
+    font-size: 4.4rem; }
+  h2 {
+    font-size: 26px;
+    font-size: 2.6rem; } }
+
 /* Landscape phones and down */
-@media (max-width: 480px) {
+@media (max-width: 495px) {
   .equalHM {
     width: calc(100% - 20px); }
   h1 {
-    font-size: 42px;
-    font-size: 4.2rem; }
+    font-size: 32px;
+    font-size: 3.2rem; }
   h2 {
     font-size: 22px;
-    font-size: 2.2rem; } }
+    font-size: 2.2rem; }
+  .search {
+    margin: 0 0 40px 0; } }
