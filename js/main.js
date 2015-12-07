@@ -2,11 +2,14 @@
 var myApp = {};
 
 myApp.displayCount = 0; //increments by 9
-myApp.pageCount = 0; // increments by 1 at the same time as displaycount increments
+myApp.pageCount = 0; // increments by 1 at the same time as display count increments
 //myApp.resultsCount = 0;  // LP: Commenting out as we might not need this
 // Insert API key name of '.apiKey' into myApp {} and store API key
 myApp.jyipKey = '886387905641973'; // insert personal API key
 myApp.userLocation;
+
+// create an empty variable, empty quotes?
+myApp.newOffset = '';
 
 /* 0: Object
 city: "Toronto"
@@ -75,7 +78,8 @@ myApp.searchListener = function(){
 
 	  		// myApp.resultsCount = 0; //reset the counter
 
-	  		myApp.getUserInput(myApp.displayCount);
+	  		// Pass a boolean parameter of true to coincide with the load more button
+	  		myApp.getUserInput(myApp.displayCount, true);
 
   		} else {
   			console.log('poop');
@@ -86,7 +90,8 @@ myApp.searchListener = function(){
 
 // Create a method to .ajax call Indeed jobs
 
-myApp.getUserInput = function(startCnt){
+// The clear parameter has been mapped with the 'true' boolean
+myApp.getUserInput = function(startCnt, clear){
 	$.ajax({
 	    url: 'http://proxy.hackeryou.com', // setup proxy url
 	    dataType: 'json',
@@ -122,7 +127,7 @@ myApp.getUserInput = function(startCnt){
 	            latlong: 1, // If Latitude AND longitude = 1, gives info per job result. Default is 0.
 	            co: 'ca' // Country : 'ca' aka CAN. | Default is 'us'.
 	            
-	            /* Ryan mentioned we didn't need these, but I don't know why:
+	            /* Ryan mentioned we didn't need these, but we can ask him later'
 	            chnl:	// Channel Name: Group API requests to a specific channel
 	            userip:	// The IP number of the end-user to whom the job results will be displayed. This field is required.
 	            useragent: // The User-Agent (browser) of the end-user to whom the job results will be displayed. Can be obtained from "User-Agent" HTTP request header from the end-user. This field is required.
@@ -144,10 +149,16 @@ myApp.getUserInput = function(startCnt){
 		// $('span.end').text(myApp.ajaxResults.end);
 		// $('span.totalResults').text(myApp.ajaxResults.totalResults);
 
+		// If the clear parameter is exactly equal to true, empty the container inside results
+		if(clear === true) {
+			$('#results .container').empty();
+		}
+
 		// Increment our global counter by 9 everytime we get results
 		myApp.displayCount += 9;
 
 		// start is always 1, end is our displayCount
+		// myApp.showNumJobs(1, res.end, res.totalget); where is this coming from?
 		myApp.showNumJobs(1, res.end, res.totalResults);
 		myApp.createResults(res.results);
 
@@ -205,8 +216,15 @@ myApp.createResults = function(jobResults) {
 	//$('.container').empty();
 	$.each(allArticleObjects, function(index, value){
 		$('.container').append(value);
+		// grab the offset value of the first result in the array of objects
+		if(index === 0) {
+			myApp.newOffset = $(value).offset().top
+		}
+		// jQuery method for top and left (or x y ) values
 		// myApp.counter();
 	});
+	// use the offset value and give padding of 60, and duration 800
+	$(document.body).animate({scrollTop: myApp.newOffset - 30}, 800);
 
 }
 
@@ -215,7 +233,8 @@ myApp.loadMore = function(){
 	// 	e.preventDefault();
 		console.log("Loading More");
 
-		myApp.getUserInput(myApp.displayCount);
+		// pass the parameter of false, because you don't want to clear what you have in the container, you want to append
+		myApp.getUserInput(myApp.displayCount, false);
 	// });
 };
 
@@ -312,7 +331,6 @@ myApp.createJobArticle = function(job, highlightColor){
 	$article.append($header, $description, $footer);
 	return $article;
 };
-
 
 //initialize Listener
 myApp.init = function(){

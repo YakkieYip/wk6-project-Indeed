@@ -163,7 +163,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   display: block; }
 
 input:required {
-  border-color: red !important; }
+  border-color: red; }
 
 input:required + label {
   color: red; }
@@ -276,7 +276,7 @@ b, strong {
   line-height: 17px;
   margin: 30px 0 20px 0; }
 
-header {
+header.heroImage {
   /* Location of the image */
   background-image: url(../images/hero-banner.jpg);
   /* Image is centered vertically and horizontally at all times */
@@ -385,9 +385,12 @@ img.logo {
   text-align: center;
   padding: 50px 0 100px 0; }
 
-input:focus {
+.mainForm input:focus {
   border-style: solid;
-  border-color: #F99D88; }
+  border-color: #F99D88;
+  outline: none; }
+  .mainForm input:focus:active {
+    outline: none; }
 
 input.keywords, .location {
   background: rgba(255, 255, 255, 0.25);
@@ -520,7 +523,7 @@ article a:hover {
 .mainFooter {
   background: #444444;
   margin: 0;
-  padding: 100px;
+  padding: 25px;
   text-align: center;
   position: relative; }
 
@@ -530,7 +533,10 @@ article a:hover {
 div.toTop {
   position: absolute;
   right: 25px;
-  top: -110px; }
+  top: -110px;
+  margin-right: 15px; }
+  div.toTop a:focus, div.toTop a:active {
+    outline: none; }
   div.toTop i:hover {
     color: #A7B8B8; }
   div.toTop i {
@@ -572,7 +578,13 @@ div.logo svg {
     font-size: 5.6rem; }
   h2 {
     font-size: 34px;
-    font-size: 3.4rem; } }
+    font-size: 3.4rem; }
+  input.keywords, input.location {
+    margin-left: 30px; }
+  .mainForm p.instructions {
+    padding-left: 45px; }
+  span.nested img {
+    max-width: 22%; } }
 
 @media only screen and (max-width: 614px) {
   h1 {
@@ -618,3 +630,13 @@ div.logo svg {
   .field2 p.instructions {
     font-size: 12px;
     font-size: 1.2rem; } }
+
+@media (max-width: 450px) {
+  div.toTop {
+    position: absolute;
+    right: 25px;
+    top: -80px;
+    left: 25px;
+    margin: 0; }
+  .btn {
+    margin: 30px auto 100px; } }
